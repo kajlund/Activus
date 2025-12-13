@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon.ico">
+  <title>Activitz - {{title}}</title>
+
+  <link rel="stylesheet" href="/css/app.css">
+
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <main>
+    {% block %}{% endblock %}
+  </main>
+  <script type="text/javascript" src="/js/app.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
