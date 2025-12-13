@@ -1,0 +1,14 @@
+{% layout 'layout' %}
+
+{% block 'head' %}
+  <link rel="stylesheet" href="/css/error.css" />
+{% endblock %}
+
+<section class="error">
+  <h1>Oops!</h1>
+  <h3>{{error.statusCode}} - {{error.message}}</h3>
+  <p>{{error.detail}}</p>
+  <footer>
+    <a class="btn btn-outline" href="/">Go back home</a>
+  </footer>
+</section>

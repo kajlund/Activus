@@ -5,6 +5,8 @@ import { Liquid } from 'liquidjs';
 import httpLogger from 'pino-http';
 
 import { getRouter } from './routes/index.js';
+import { getErrorHandler } from './middleware/errorhandler.js';
+import { getNotFoundHandler } from './middleware/notfoundhandler.js';
 
 export function getApp(cnf, log) {
   const app = express();
@@ -46,6 +48,12 @@ export function getApp(cnf, log) {
 
   // Add routes
   app.use(getRouter(cnf, log));
+
+  // Add 404 handler
+  app.use(getNotFoundHandler());
+
+  // Add Generic Error handler
+  app.use(getErrorHandler(log));
 
   return app;
 }

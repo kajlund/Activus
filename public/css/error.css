@@ -1,0 +1,25 @@
+section.error {
+  max-width: 60rem;
+  margin: 0 auto;
+  margin-top: 15rem;
+  padding: 2rem;
+  padding-top: 0;
+  border: 3px solid var(--color-accent1);
+  border-radius: 3rem;
+}
+
+section.error h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+section.error footer {
+  display: flex;
+  flex-direction: column-reverse;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+}
+
+section.error footer a { 
+  display: inline-block;
+}
