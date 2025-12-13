@@ -4,6 +4,8 @@
   "description": "My activities app",
   "main": "index.js",
   "scripts": {
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
     "dev": "node --watch --env-file=.env.development ./src/index.js",
     "start": "node ./src/index.js"
   },
@@ -16,6 +18,7 @@
     "@types/express": "^5.0.6",
     "@types/node": "^25.0.1",
     "@types/pg": "^8.16.0",
+    "drizzle-kit": "^0.31.8",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
@@ -24,9 +27,12 @@
   },
   "dependencies": {
     "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.45.1",
     "express": "^5.2.1",
     "express-rate-limit": "^8.2.1",
     "liquidjs": "^10.24.0",
+    "pg": "^8.16.3",
     "pino": "^10.1.0",
     "pino-http": "^11.0.0",
     "pino-pretty": "^13.1.3",
