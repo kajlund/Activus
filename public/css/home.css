@@ -7,5 +7,5 @@
 }
 
 .home h1 {
-  color: violet;
+  color: var(--color-text);
 }

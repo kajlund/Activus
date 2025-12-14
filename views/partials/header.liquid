@@ -1,0 +1,23 @@
+<header>
+  <nav>
+    <a href="/"
+      class="{% if page == 'home' %} active{% endif %}"
+    >Home</a>
+    <a href="/activities"
+      class="{% if page == 'activities' %} active{% endif %}"
+    >Activities</a>
+    <a href="/goals"
+      class="{% if page == 'goals' %} active{% endif %}"
+    >Goals</a>
+    <a href="/activitykinds"
+      class="{% if page == 'kinds' %} active{% endif %}"
+    >Kinds</a>
+
+    <div class="nav-cmd">
+      <button id="theme-toggle-btn">
+        <i data-feather="sun" class="sun-icon"></i>
+        <i data-feather="moon" class="moon-icon"></i>
+      </button>
+    </div>
+  </nav>
+</header>

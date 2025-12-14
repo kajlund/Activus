@@ -1,25 +1,30 @@
 section.error {
-  max-width: 60rem;
+  display: flex;
+  flex-direction: column;
+  max-width: 40rem;
   margin: 0 auto;
-  margin-top: 15rem;
-  padding: 2rem;
-  padding-top: 0;
-  border: 3px solid var(--color-accent1);
+  margin-top: 10rem;
+  padding: 2rem 4rem 4rem 4rem;
+  border: 2px solid var(--color-primary);
   border-radius: 3rem;
 }
 
-section.error h1 {
-  font-size: 3rem;
+h1 {
+  font-size: 4rem;
+  color: var(--color-secondary);
+  margin-bottom: 2rem;
   text-align: center;
 }
 
-section.error footer {
-  display: flex;
-  flex-direction: column-reverse;
-  padding-top: 4rem;
-  padding-bottom: 2rem;
+.detail {
+  font-size: 1.8rem;
+  color: var(--color-text);
+  margin-top: 2rem;
 }
 
-section.error footer a { 
-  display: inline-block;
+.cmd {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-top: 4rem;
 }

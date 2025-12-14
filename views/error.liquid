@@ -6,9 +6,19 @@
 
 <section class="error">
   <h1>Oops!</h1>
-  <h3>{{error.statusCode}} - {{error.message}}</h3>
-  <p>{{error.detail}}</p>
-  <footer>
-    <a class="btn btn-outline" href="/">Go back home</a>
-  </footer>
+  <h2>{{error.statusCode}} - {{error.message}}</h2>
+
+  <div class="detail">
+    {% if error.details %}
+      <p>{{error.details}}</p>
+    {% else %}
+      <p>Sorry, no furher information was given.</p>
+    {% endif %}
+  </div>
+
+  <div class="cmd">
+    <i data-feather="arrow-left"></i>
+    <a class="btn btn-outline" href="/">Take me back home</a>
+  </div>
+
 </section>

@@ -6,23 +6,15 @@
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon.ico">
   <title>Activitz - {{title}}</title>
 
-  <link rel="stylesheet" href="/css/root.css">
-  <link rel="stylesheet" href="/css/containers.css">
+  <link rel="stylesheet" href="/css/_main.css">
 
-  {% block head %}
-  {% endblock %}
+  <!-- Block to include page-specific CSS -->
+  {% block head %}{% endblock %}
 </head>
 <body>
+  <!-- Block to include page-specific headers or default -->
   {% block header %}
-    <header id="header">
-      <nav>
-        <a href="/" class="nav-link">Home</a>
-        <a href="/activities" class="nav-link">Activities</a>
-        <a href="/goals" class="nav-link">Goals</a>
-        <a href="/kinds" class="nav-link">Kinds</a>
-        <a href="/activities/add" class="nav-link nav-cmd">Add</a>
-      </nav>
-    </header>
+    {% include 'header', page: page %}
   {% endblock %}
 
   <main>
@@ -35,6 +27,8 @@
     <footer>Copyright LuKa, 2025</footer>
   {% endblock %}
 
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>feather.replace();</script>
   <script type="text/javascript" src="/js/app.js"></script>
   {% block scripts %}{% endblock %}
 </body>

@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  scroll-behavior: smooth;
+  --primary-font: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-size-xxs: .8rem;
+  --font-size-xs: 1rem;
+  --font-size-sm: 1.2rem;
+  --font-size-md: 1.6rem;
+  --font-size-lg: 2.4rem;
+  --font-size-xl: 3rem;
+  --font-size-xxl: 4rem;
+
+  /* Primary - Electric Violet, Navigation bar, major headers, important dark elements. */
+  --color-primary: #590D82;
+
+  /* Secondary - Vivid Lavender, Accent elements, hover states, icons. */
+  --color-secondary: #B983FF;
+
+  /* Secondary Dark - Deep Magenta, Used for darker accents, shadows, and emphasis. */
+  --color-secondary-dk: #7D23A0;
+
+  /* Accent - Neon Yellow, Spotted use only: CTA buttons, high-priority notifications, highlights.. */
+  --color-accent: #FFF01F;
+
+  /* Background - Soft White, Main page background, content areas. */
+  --color-background: #FAFAFA;
+
+  /* Text/Base - Dark Grey, Main body text, offers better readability than pure black on soft white. */
+  --color-text: #333;
+
+  /* Subtle Accent - Light Lavender, Borders, dividers, subtle section separators, inactive states.*/
+  --color-subtle: #DDD3E6; /* For borders/hints */
+
+  /* Header/Footer Specific Variables */
+  --header-footer-bg: var(--color-primary);
+  --header-footer-text: #E0E0E0; /* Light Gray for strong contrast */
+  --header-footer-link: #FAFAFA; /* Soft White for non-active links */
+}
+
+.dark-mode {
+  --color-background: #0D0610; /* Richer, softer black */
+  --color-text: #E0E0E0; /* Slightly less harsh white */
+  --color-subtle: #8A609C; /* For borders/hints */
+  /* Header/Footer Specific Variables - Colors remain the same as they work on the dark background */
+  --header-footer-bg: var(--color-primary);
+  --header-footer-text: #E0E0E0;
+  --header-footer-link: var(--color-secondary); /* Cyber Teal for a vibrant link color */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  /* Base font size = 62.5% or 10px for easy rem usage */
+  font-size: 62.5%;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  font-family: var(--primary-font);
+  font-size: var(--font-size-md);
+
+  background-color: var(--color-background);
+  color: var(--color-text);
+  letter-spacing: 1px;
+  transition: background-color .25s, color .25s;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-secondary);
+  text-decoration: underline;
+}
+
+main {
+  flex-grow: 1;
+}
+
+footer {
+  background-color: var(--header-footer-bg);
+  font-size: var(--font-size-xs);
+  color: var(--header-footer-text);
+  padding: 1rem;
+}
+
+header nav {
+  background-color: var(--color-primary);
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem;
+}
+
+.nav-cmd {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+header nav a {
+/* Set base color and necessary padding/transition */
+  color: var(--header-footer-link); /* #E0E0E0 (Light Gray) */
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 4px; /* Rounded corners for the button look */
+  transition: all 0.2s ease-in-out; /* Smooth transition for hover/active */
+  display: inline-block; /* Allows padding and background */
+  margin: 0 5px; /* Spacing between buttons */
+}
+
+header nav a:hover {
+  /* Switch to Cyber Teal background */
+  background-color: var(--color-secondary); /* #00CED1 (Cyber Teal) */
+  /* Switch text to Primary Color for high contrast */
+  color: var(--color-primary); /* #590D82 (Electric Violet) */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle lift for a "button" effect */
+  transform: translateY(-1px); /* Slight raise on hover */
+}
+
+header nav a.active {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+#theme-toggle-btn {
+  background-color: transparent;
+  font: inherit;
+  color: var(--header-footer-link);
+  border: none;
+}
+
+#theme-toggle-btn:hover {
+  color: var(--color-secondary);
+}
+
+.sun-icon {
+  display: none;
+}
+
+.dark-mode .sun-icon {
+  display: block;
+}
+
+.dark-mode .sun-icon:hover {
+  color: var(--header-footer-text);
+}
+
+.dark-mode .moon-icon {
+  display: none;
+}
