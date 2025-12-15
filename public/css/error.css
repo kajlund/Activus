@@ -18,7 +18,7 @@ h1 {
 
 .detail {
   font-size: 1.8rem;
-  color: var(--color-text);
+  color: var(--color-text-base);
   margin-top: 2rem;
 }
 
