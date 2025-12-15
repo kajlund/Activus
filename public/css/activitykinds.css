@@ -1,0 +1,111 @@
+.container {
+  max-width: 50rem;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  border: 1px solid var(--color-subtle);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-subtle);
+  padding: 2rem;
+}
+
+.commands {
+  margin-left: auto;
+}
+
+.kinds-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.kinds-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: var(--color-text-base);
+  padding: 1.5rem 2rem;
+  border: 1px solid var(--color-subtle-border); /* Soft border for separation */
+  border-radius: var(--border-radius);
+  /* transition: background-color .25s, color .25s; */
+  transition: all 0.2s ease-in-out;
+}
+
+.kinds-list h3 {
+  font-size: var(--font-size-md);
+}
+
+.kinds-list p {
+  color: #888888; /* Soft gray for less important info */
+  font-size: var(--font-size-sm);
+}
+
+/* LIGHT MODE COLORS */
+.kinds-list li a {
+  background-color: #FFFFFF; /* White background for the card */
+  color: var(--color-text-base); /* Dark Gray text */
+}
+
+/* The Interactive State (Hover/Focus) */
+.kinds-list li a:hover,
+.kinds-list li a:focus {
+  /* Use a subtle box shadow for a lift effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+  /* Highlight the border with the Vivid Lavender secondary color */
+  border-color: var(--color-secondary); /* #B983FF */
+}
+
+/* Icon (Feather) Styling */
+.kinds-list .icon {
+  margin-left: 20px;
+  stroke: var(--color-secondary); /* Vivid Lavender icon color */
+  width: 18px;
+  height: 18px;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Icon animation on hover */
+.kinds-list li a:hover .icon {
+  transform: translateX(4px); /* Slides the arrow icon slightly */
+}
+
+/* DARK MODE OVERRIDES */
+.dark-mode .kinds-list li a {
+  /* Slightly lighter than the background for contrast */
+  background-color: #1E122A;
+  color: var(--color-text-on-dark); /* Light Gray text */
+  /* Use a lighter border for separation */
+  border-color: #333333;
+}
+
+.dark-mode .kinds-list h3 {
+  color: var(--color-secondary);
+}
+
+.dark-mode .kinds-list p {
+  color: #AAAAAA; /* Lighter soft gray for meta text */
+}
+
+/* The Interactive State (Hover/Focus) */
+.dark-mode .kinds-list li a:hover,
+.dark-mode .kinds-list li a:focus {
+  /* The border highlight remains Vivid Lavender */
+  border-color: var(--color-secondary);
+  /* Box shadow should be white/light for visibility on a dark background */
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.12);
+}
+
+/* Icon (Feather) Styling */
+.dark-mode .kinds-list .icon {
+  stroke: var(--color-secondary); /* Vivid Lavender remains bright */
+}

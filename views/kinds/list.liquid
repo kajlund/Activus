@@ -1,0 +1,27 @@
+{% layout 'layout' %}
+
+{% block 'head' %}
+  <link rel="stylesheet" href="/css/activitykinds.css" />
+{% endblock %}
+
+<section class="page-header">
+  <h2>Kinds of Activities</h2>
+  <div class="commands">
+    <a href="#" class="button secondary">Add</a>
+  </div>
+</section>
+
+<section class="container">
+  {% for kind in kinds %}
+    <ul class="kinds-list">
+      <li>
+        <a href="/activitykinds/{{ kind.id }}">
+          <h3>{{ kind.name }}</h3>
+          <p>{{ kind.description }}</p>
+          <i data-feather="arrow-right" class="icon"></i>
+        </a>
+      </li>
+    </ul>
+  {% endfor %}
+</section>
+

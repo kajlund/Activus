@@ -1,11 +1,13 @@
 import express from 'express';
 
 import { getHomeRoutes } from './home.routes.js';
+import { getActivityKindRoutes } from './activitykind.routes.js';
 
 export function getRouter(cnf, log) {
   const homeRoutes = getHomeRoutes(cnf, log);
+  const kindRoutes = getActivityKindRoutes(cnf, log);
 
-  const groups = [homeRoutes];
+  const groups = [homeRoutes, kindRoutes];
   const router = express.Router();
 
   groups.forEach(({ group, routes }) => {
