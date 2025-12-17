@@ -1,13 +1,17 @@
-{% layout 'layout' %}
+{% extends "layouts/layout.njk" %}
 
-{% block 'head' %}
+{% block head %}
   <link rel="stylesheet" href="/css/activitykinds.css" />
 {% endblock %}
 
+{% block main %}
 <section class="page-header">
   <h2>Kinds of Activities</h2>
   <div class="commands">
-    <a href="#" class="button secondary">Add</a>
+    <a href="/activitykinds/new" class="button secondary">
+      <i data-feather="plus-square" class="icon"></i>
+      New
+    </a>
   </div>
 </section>
 
@@ -15,13 +19,13 @@
   {% for kind in kinds %}
     <ul class="kinds-list">
       <li>
-        <a href="/activitykinds/{{ kind.id }}">
+        <a href="/activitykinds/edit/{{ kind.id }}">
           <h3>{{ kind.name }}</h3>
           <p>{{ kind.description }}</p>
-          <i data-feather="arrow-right" class="icon"></i>
+          <i data-feather="chevron-right" class="icon"></i>
         </a>
       </li>
     </ul>
   {% endfor %}
 </section>
-
+{% endblock %}

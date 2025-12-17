@@ -1,7 +1,7 @@
 import cookieParser from 'cookie-parser';
 import express from 'express';
 import { rateLimit } from 'express-rate-limit';
-import { Liquid } from 'liquidjs';
+import nunjucks from 'nunjucks';
 import httpLogger from 'pino-http';
 
 import { getRouter } from './routes/index.js';
@@ -15,7 +15,7 @@ export function getApp(cnf, log) {
   app.disable('x-powered-by');
   app.set('trust proxy', 1); // trust first proxy
   app.use(express.json({ limit: '100kb' }));
-  app.use(express.urlencoded({ extended: false }));
+  app.use(express.urlencoded({ extended: true, limit: '100kb' }));
   app.use(cookieParser(cnf.cookieSecret));
   app.use(
     rateLimit({
@@ -28,15 +28,12 @@ export function getApp(cnf, log) {
   );
 
   // Set view engine
-  const engine = new Liquid({
-    cache: process.env.NODE_ENV !== 'development',
-    root: 'views',
-    layouts: 'views/layouts',
-    partials: 'views/partials',
-    extname: '.liquid',
+  nunjucks.configure('views', {
+    autoescape: true,
+    express: app,
+    noCache: process.env.NODE_ENV !== 'production',
   });
-  app.engine('liquid', engine.express()); // register liquid engine
-  app.set('view engine', 'liquid'); // set as default
+  app.set('view engine', 'njk'); // set as default
 
   // Serve public
   app.use(express.static('public'));

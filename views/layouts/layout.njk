@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="64x64" href="/img/icon-64x64.png">
   <link rel="icon" type="image/png" sizes="128x128" href="/img/icon-128x128.png">
   <link rel="icon" type="image/png" sizes="256x256" href="/img/icon-256x256.png">
-  <title>Activitz - {{title}}</title>
+  <title>Activus - {{title}}</title>
 
   <link rel="stylesheet" href="/css/_main.css">
 
@@ -18,11 +18,11 @@
 <body>
   <!-- Block to include page-specific headers or default -->
   {% block header %}
-    {% include 'header', page: page %}
+    {% include "partials/header.njk" %}
   {% endblock %}
 
   <main>
-  {% block %}
+  {% block main %}
     Main Content (Flexible)
   {% endblock %}
   </main>

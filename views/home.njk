@@ -1,9 +1,11 @@
-{% layout 'layout' %}
+{% extends "layouts/layout.njk" %}
 
-{% block 'head' %}
+{% block head %}
   <link rel="stylesheet" href="/css/home.css" />
 {% endblock %}
 
+{% block main %}
 <div class="home">
   <h1>Activus</h1>
 </div>
+{% endblock %}

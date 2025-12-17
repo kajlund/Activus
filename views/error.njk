@@ -1,9 +1,10 @@
-{% layout 'layout' %}
+{% extends "layouts/layout.njk" %}
 
-{% block 'head' %}
+{% block head %}
   <link rel="stylesheet" href="/css/error.css" />
 {% endblock %}
 
+{% block main %}
 <section class="error">
   <h1>Oops!</h1>
   <h2>{{error.statusCode}} - {{error.message}}</h2>
@@ -20,5 +21,5 @@
     <i data-feather="arrow-left"></i>
     <a class="btn btn-outline" href="/">Take me back home</a>
   </div>
-
 </section>
+{% endblock %}
