@@ -1,15 +1,14 @@
-<header>
-  <nav>
-    <a href="/"><img src="/img/logo.png" alt="logo" class="logo"></a>
-    <a href="/activities"
-      class="{% if page == 'activities' %} active{% endif %}"
-    >Activities</a>
-    <a href="/goals"
-      class="{% if page == 'goals' %} active{% endif %}"
-    >Goals</a>
-    <a href="/activitykinds"
-      class="{% if page == 'kinds' %} active{% endif %}"
-    >Kinds</a>
+{% from "macros/nav.njk" import navLink %}
+
+<header class="site-header">
+  <div class="brand">
+   <img src="/img/logo.png" alt="logo" class="logo">
+  </div>
+  <nav class="main-nav">
+    {{ navLink('ico-home', 'Home', '/', 'home', page) }}
+    {{ navLink('ico-activity', 'Activities', '/activities', 'activities', page) }}
+    {{ navLink('ico-trophy', 'Challenges', '/challenges', 'challenges', page) }}
+    {{ navLink('ico-kinds', 'Kinds', '/activitykinds', 'kinds', page) }}
 
     <div class="nav-cmd">
       <button id="theme-toggle-btn">

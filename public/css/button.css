@@ -63,6 +63,16 @@
   color: var(--color-primary); /* Electric Violet text */
 }
 
+.btn .icon {
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.6rem;
+  stroke-width: 2px;
+  stroke: currentColor;
+  fill: none;
+}
+
+
 /* SMALL BUTTON VARIANT */
 .btn-small {
   max-height: 2.4rem;
@@ -72,6 +82,11 @@
 }
 /* Example Usage: Secondary Small Button */
 /* .btn-secondary.btn-small or a.button.secondary.small */
+
+.btn-small .icon {
+  width: 1rem;
+  height: 1rem;
+}
 
 .dark-mode .btn-primary {
   /* BACKGROUND: Remains Neon Yellow for high visibility */

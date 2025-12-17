@@ -1,0 +1,60 @@
+.nav-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1.6rem;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  color: var(--color-text-on-dark); /* Using your light gray */
+  transition: all 0.2s ease;
+}
+
+/* The Active State (Vivid Lavender button) */
+.nav-item.active {
+  background-color: var(--color-secondary); /* #B983FF */
+  color: var(--color-primary); /* #590D82 */
+}
+
+.icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.active-indicator {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-accent); /* Neon Yellow #FFF01F */
+  border-radius: 50%;
+  border: 2px solid var(--color-primary); /* Prevents the dot from touching the icon */
+
+  /* Adds that "sports tech" glow */
+  box-shadow: 0 0 8px var(--color-accent);
+
+  /* Optional: a little entrance animation */
+  animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+/* Style the icon inside the link */
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor; /* Inherits the link text color! */
+  stroke-width: 2;
+}
+
+/* Hover effect for non-active links */
+.nav-item:not(.active):hover {
+  background-color: rgba(185, 131, 255, 0.1); /* Subtle lavender tint */
+  color: var(--color-secondary);
+}

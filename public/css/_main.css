@@ -108,12 +108,24 @@ footer {
   padding: 1rem;
 }
 
-header nav {
+.site-header {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-primary);
+  padding: 0 1rem;
+}
+
+.brand {
+  margin-top: 0.2rem;
+}
+
+.main-nav {
+  flex: 1;
   background-color: var(--color-primary);
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 0.5rem;
+  padding: 1rem 0;
 }
 
 .nav-cmd {
@@ -122,7 +134,7 @@ header nav {
   margin-left: auto;
 }
 
-header nav a {
+.main-nav a {
 /* Set base color and necessary padding/transition */
   color: var(--header-footer-link); /* #E0E0E0 (Light Gray) */
   text-decoration: none;
@@ -133,7 +145,7 @@ header nav a {
   margin: 0 5px; /* Spacing between buttons */
 }
 
-header nav a:hover {
+.main-nav a:hover {
   /* Switch to Cyber Teal background */
   background-color: var(--color-secondary); /* #00CED1 (Cyber Teal) */
   /* Switch text to Primary Color for high contrast */
@@ -142,7 +154,7 @@ header nav a:hover {
   transform: translateY(-1px); /* Slight raise on hover */
 }
 
-header nav a.active {
+.main-nav a.active {
   background-color: var(--color-secondary);
   color: var(--color-primary);
   font-weight: bold;
@@ -178,18 +190,4 @@ header nav a.active {
 
 .dark-mode .moon-icon {
   display: none;
-}
-
-.icon {
-  display: inline-block;
-  width: 1.6rem;
-  height: 1.6rem;
-  stroke-width: 2px;
-  stroke: currentColor;
-  fill: none;
-}
-
-.btn-small .icon {
-  width: 1rem;
-  height: 1rem;
 }

@@ -1,0 +1,17 @@
+{% macro navLink(id, label, url, page, currentPage) %}
+  {# Logic: Check if this link is the current page #}
+  {% set isActive = (currentPage == page) %}
+
+  <a href="{{ url }}"
+    class="nav-item {{ 'active' if isActive }}">
+    <div class="icon-wrapper">
+      <svg class="nav-icon {{ 'is-active' if isActive }}">
+        <use href="#{{ id }}"></use>
+      </svg>
+      {% if isActive %}
+        <span class="active-indicator"></span>
+      {% endif %}
+    </div>
+    <span class="nav-label">{{ label }}</span>
+  </a>
+{% endmacro %}
