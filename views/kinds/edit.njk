@@ -1,0 +1,60 @@
+{% extends "layouts/layout.njk" %}
+
+{% block head %}
+  <link rel="stylesheet" href="/css/forms.css" />
+{% endblock %}
+
+{% block main %}
+<section class="page-header">
+  <h2>{{ title }}</h2>
+  <div class="commands">
+    <a href="/activitykinds" class="btn btn-outline">
+      <i data-feather="chevron-left"></i> Back
+    </a>
+  </div>
+</section>
+
+<section class="form-container">
+  <form method="post" action="
+  {% if insertMode %}/activitykinds/create{% else %}/activitykinds/update/{{kind.id}}{% endif %}
+  ">
+
+    <div class="form-section">
+      <div class="input-group">
+        <label for="name" class="input-label">Name</label>
+        <input type="text" id="name" name="name"
+          class="input"
+          placeholder="Name of activity kind"
+          value="{{kind.name}}"
+        >
+        <p class="field-error">{{error.name}}</p>
+      </div>
+      <div class="input-group">
+        <label for="description" class="input-label">Description</label>
+        <textarea id="description" name="description"
+          class="input textarea"
+          placeholder="Description"
+        >{{kind.description}}</textarea>
+        <p class="input-error">{{error.description}}</p>
+      </div>
+    </div>
+    <div class="form-commands">
+      {% if not insertMode %}
+        <a class="btn btn-secondary btn-outline" href="/activitykinds/delete/{{kind.id}}">
+          <i data-feather="trash-2" class="icon"></i>
+          Delete
+        </a>
+        <button class="btn btn-secondary" type="submit">
+          <i data-feather="check" class="icon"></i>
+          Update
+        </button>
+      {% else %}
+        <button class="btn btn-secondary" type="submit">
+          <i data-feather="save" class="icon"></i>
+          Save
+        </button>
+      {% endif %}
+    </div>
+  </form>
+</section>
+{% endblock %}

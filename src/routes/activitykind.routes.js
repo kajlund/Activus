@@ -17,12 +17,6 @@ export function getActivityKindRoutes(cnf, log) {
       },
       {
         method: 'get',
-        path: '/:id',
-        middleware: [],
-        handler: ctrl.showDetailsView,
-      },
-      {
-        method: 'get',
         path: '/new',
         middleware: [],
         handler: ctrl.showAddView,
@@ -35,19 +29,19 @@ export function getActivityKindRoutes(cnf, log) {
       },
       {
         method: 'post',
-        path: '/',
+        path: '/create',
         middleware: [],
         handler: ctrl.createActivityKind,
       },
       {
         method: 'post',
-        path: '/:id',
+        path: '/update/:id',
         middleware: [],
         handler: ctrl.updateActivityKind,
       },
       {
         method: 'get',
-        path: '/:id/delete',
+        path: '/delete/:id',
         middleware: [],
         handler: ctrl.deleteActivityKind,
       },

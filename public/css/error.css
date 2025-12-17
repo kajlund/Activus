@@ -16,15 +16,22 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  font-size: 2.4rem;
+  color: var(--color-text-base);
+  text-align: center;
+}
+
 .detail {
   font-size: 1.8rem;
   color: var(--color-text-base);
+  text-align: center;
   margin-top: 2rem;
 }
 
 .cmd {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: center;
   margin-top: 4rem;
 }

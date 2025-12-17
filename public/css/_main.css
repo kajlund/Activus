@@ -34,13 +34,16 @@
 
   /* Subtle Accent - Light Lavender, Borders, dividers, subtle section separators, inactive states.*/
   --color-subtle: #DDD3E6; /* For borders/hints */
+  --color-error: #FF4C4C; /* Bright Red for error messages */
 
   /* Header/Footer Specific Variables */
   --header-footer-bg: var(--color-primary);
   --header-footer-text: #E0E0E0; /* Light Gray for strong contrast */
   --header-footer-link: #FAFAFA; /* Soft White for non-active links */
 
-  --border-radius: 0.4rem;
+  --border-radius-xs: 0.4rem;
+  --border-radius: 0.8rem;
+  --border-radius-lg: 1.2rem;
 }
 
 .dark-mode {
@@ -145,6 +148,11 @@ header nav a.active {
   font-weight: bold;
 }
 
+.nav-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
 #theme-toggle-btn {
   background-color: transparent;
   font: inherit;
@@ -172,124 +180,16 @@ header nav a.active {
   display: none;
 }
 
-/* BASE STYLES for all buttons and anchor elements that act as buttons */
-.btn, a.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  text-decoration: none;
-  font-weight: 600;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  padding: 1rem 2rem; /* Standard size padding */
-  border: 2px solid transparent; /* Essential for outline buttons */
-  line-height: 1; /* Helps with vertical alignment */
+.icon {
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.6rem;
+  stroke-width: 2px;
+  stroke: currentColor;
+  fill: none;
 }
 
-/* Base Hover Effect (A subtle lift for all buttons) */
-.btn:hover, a.button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+.btn-small .icon {
+  width: 1rem;
+  height: 1rem;
 }
-
-/* PRIMARY CTA BUTTON (Neon Yellow) */
-.btn-primary, a.button.primary {
-  background-color: var(--color-accent); /* Neon Yellow */
-  color: var(--color-primary); /* Electric Violet text for high contrast */
-  border-color: var(--color-accent); /* Solid look */
-}
-
-.btn-primary:hover, a.button.primary:hover {
-  /* Darken the yellow slightly on hover for feedback */
-  background-color: color-mix(in srgb, var(--color-accent) 90%, black);
-  border-color: color-mix(in srgb, var(--color-accent) 90%, black);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* SECONDARY BUTTON (Vivid Lavender) */
-.btn-secondary, a.button.secondary {
-  background-color: var(--color-secondary); /* Vivid Lavender */
-  color: var(--color-primary); /* Electric Violet text */
-  border-color: var(--color-secondary);
-}
-
-.btn-secondary:hover, a.button.secondary:hover {
-  /* Subtle darkening on hover */
-  background-color: color-mix(in srgb, var(--color-secondary) 90%, black);
-  border-color: color-mix(in srgb, var(--color-secondary) 90%, black);
-}
-
-/* OUTLINE BUTTON (Vivid Lavender Border) */
-.btn-outline, a.button.outline {
-  background-color: transparent;
-  color: var(--color-secondary); /* Vivid Lavender text */
-  border-color: var(--color-secondary); /* Vivid Lavender border */
-}
-
-.btn-outline:hover, a.button.outline:hover {
-  /* Fills with the secondary color on hover for strong feedback */
-  background-color: var(--color-secondary);
-  color: var(--color-primary); /* Electric Violet text */
-}
-
-/* SMALL BUTTON VARIANT */
-.btn-small, a.button.small {
-  padding: 6px 12px; /* Reduced padding */
-  font-size: 0.9rem; /* Slightly smaller text */
-  font-weight: 500; /* Thinner weight for a lighter look */
-}
-/* Example Usage: Secondary Small Button */
-/* .btn-secondary.btn-small or a.button.secondary.small */
-
-.dark-mode .btn-primary,
-.dark-mode a.button.primary {
-  /* BACKGROUND: Remains Neon Yellow for high visibility */
-  background-color: var(--color-accent);
-  /* TEXT: Remains Electric Violet for maximum contrast on the yellow */
-  color: var(--color-primary);
-}
-
-.dark-mode .btn-primary:hover,
-.dark-mode a.button.primary:hover {
-  /* Hover effect: Subtle darkening/desaturation works better than brightening on dark mode */
-  background-color: color-mix(in srgb, var(--color-accent) 85%, black);
-  border-color: color-mix(in srgb, var(--color-accent) 85%, black);
-  /* Use a subtle, dark shadow */
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
-}
-
-.dark-mode .btn-secondary,
-.dark-mode a.button.secondary {
-  /* Background remains Vivid Lavender */
-  background-color: var(--color-secondary);
-  /* Text remains Electric Violet */
-  color: var(--color-primary);
-}
-
-.dark-mode .btn-secondary:hover,
-.dark-mode a.button.secondary:hover {
-  /* Similar to primary: slight darkening for feedback */
-  background-color: color-mix(in srgb, var(--color-secondary) 90%, black);
-  border-color: color-mix(in srgb, var(--color-secondary) 90%, black);
-}
-
-.dark-mode .btn-outline,
-.dark-mode a.button.outline {
-  background-color: transparent;
-  /* TEXT & BORDER: Use the Vivid Lavender, which is bright enough against the dark background */
-  color: var(--color-secondary);
-  border-color: var(--color-secondary);
-}
-
-.dark-mode .btn-outline:hover,
-.dark-mode a.button.outline:hover {
-  /* Fills with the secondary color on hover (like in light mode) */
-  background-color: var(--color-secondary);
-  /* Text color switches to Electric Violet for perfect contrast on the filled button */
-  color: var(--color-primary);
-}
-
-
-

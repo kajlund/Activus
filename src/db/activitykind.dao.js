@@ -33,6 +33,14 @@ export function getActivityKindsDAO(log) {
       log.debug(activityKind, 'Fetched activity kind by ID:');
       return activityKind;
     },
+    findByName: async (name) => {
+      const kinds = await db
+        .select()
+        .from(activityKinds)
+        .where(eq(activityKinds.name, name));
+      log.debug(kinds, 'Fetched activity kind by name:');
+      return kinds;
+    },
     findAll: async () => {
       const result = await db
         .select()
