@@ -1,11 +1,13 @@
 import cookieParser from 'cookie-parser';
 import express from 'express';
 import { rateLimit } from 'express-rate-limit';
+import session from 'express-session';
 import nunjucks from 'nunjucks';
 import httpLogger from 'pino-http';
 
 import { getRouter } from './routes/index.js';
 import { getErrorHandler } from './middleware/errorhandler.js';
+import { getMessagesHandler } from './middleware/messages.handler.js';
 import { getNotFoundHandler } from './middleware/notfoundhandler.js';
 
 export function getApp(cnf, log) {
@@ -17,6 +19,22 @@ export function getApp(cnf, log) {
   app.use(express.json({ limit: '100kb' }));
   app.use(express.urlencoded({ extended: true, limit: '100kb' }));
   app.use(cookieParser(cnf.cookieSecret));
+  app.use(express.static('public'));
+
+  app.use(
+    session({
+      secret: cnf.cookieSecret,
+      resave: true,
+      saveUninitialized: false,
+      cookie: {
+        // sameSite: 'lax',
+        secure: false,
+        maxAge: 24 * 60 * 60 * 1000, // 1 day
+      },
+    }),
+  );
+  app.use(getMessagesHandler());
+
   app.use(
     rateLimit({
       windowMs: 5 * 60 * 1000, // 5 minutes
@@ -34,9 +52,6 @@ export function getApp(cnf, log) {
     noCache: process.env.NODE_ENV !== 'production',
   });
   app.set('view engine', 'njk'); // set as default
-
-  // Serve public
-  app.use(express.static('public'));
 
   // Logging Middleware
   if (cnf.logHttp) {

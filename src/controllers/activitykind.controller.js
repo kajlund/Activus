@@ -28,7 +28,7 @@ export function getActivityKindsController(cnf, log) {
     showEditView: asyncHandler(async (req, res) => {
       const kind = await svc.getActivityKindById(req.params.id);
       if (!kind) {
-        // req.flash('error', 'ActivityKind not found');
+        req.flash('error', 'ActivityKind not found');
         return res.redirect('/activitykinds');
       }
       res.render('kinds/edit', {
@@ -41,52 +41,47 @@ export function getActivityKindsController(cnf, log) {
     }),
     createActivityKind: asyncHandler(async (req, res) => {
       const payload = req.body;
-      log.info({ payload }, 'Creating activity kind');
-      const { data, error } = await svc.createActivityKind(payload);
-      if (error) {
-        log.info({ error }, 'Validation errors creating activity kind');
+      const result = await svc.createActivityKind(payload);
+      if (result.error) {
         res.render('kinds/edit', {
           title: 'Add ActivityKind',
           page: 'kinds',
           insertMode: true,
           kind: payload,
-          error,
+          error: result.error,
+          messages: { error: ['Validation errors'] },
         });
       } else {
-        log.info({ data }, 'ActivityKind created successfully');
-        // req.flash('success', 'ActivityKind created successfully');
+        req.flash('success', 'ActivityKind created');
         res.redirect('/activitykinds');
       }
     }),
     updateActivityKind: asyncHandler(async (req, res) => {
       const { id } = req.params;
       const payload = req.body;
-      log.info({ id, payload }, 'Updating activity kind');
-      const { data, error } = await svc.updateActivityKind(id, payload);
-      if (error) {
-        log.info({ error }, 'Validation errors updating activity kind');
+      const result = await svc.updateActivityKind(id, payload);
+      if (result.error) {
         res.render('kinds/edit', {
           title: 'Add ActivityKind',
           page: 'kinds',
           insertMode: false,
           kind: payload,
-          error,
+          error: result.error,
+          messages: { error: ['Validation errors'] },
         });
       } else {
-        log.info({ data }, 'ActivityKind updated successfully');
-        // req.flash('success', 'ActivityKind updated');
+        req.flash('success', 'ActivityKind updated');
         res.redirect('/activitykinds');
       }
     }),
     deleteActivityKind: asyncHandler(async (req, res) => {
       const { id } = req.params;
-      log.info({ id }, 'Deleting activity kind');
       const deleted = await svc.deleteActivityKind(id);
       if (!deleted) {
-        // req.flash('error', 'Delete ActivityKind failed');
+        req.flash('error', 'Delete failed');
+        return res.redirect('/activitykinds');
       }
-      log.info({ deleted }, 'ActivityKind deleted successfully');
-      // req.flash('success', 'ActivityKind deleted');
+      req.flash('success', 'ActivityKind deleted');
       res.redirect('/activitykinds');
     }),
   };

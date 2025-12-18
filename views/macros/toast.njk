@@ -1,0 +1,19 @@
+{# macros/toast.njk #}
+{% macro showToasts(messages) %}
+  <div id="toast-container">
+    {# We loop through the keys (success, error, etc) #}
+    {% for type, list in messages %}
+      {# Then loop through the array of messages for that type #}
+      {% for msg in list %}
+        <div class="toast toast-{{ type }}" role="alert">
+           <svg class="nav-icon"><use href="#ico-activity"></use></svg>
+           <div class="toast-content">
+             <strong class="toast-type">{{ type | capitalize }}</strong>
+             <p class="toast-message">{{ msg }}</p>
+           </div>
+           <button class="toast-close" onclick="this.parentElement.remove()">×</button>
+        </div>
+      {% endfor %}
+    {% endfor %}
+  </div>
+{% endmacro %}
