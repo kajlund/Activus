@@ -4,6 +4,8 @@
   "description": "My activities app",
   "main": "index.js",
   "scripts": {
+    "db:export": "node --env-file=.env.development ./scripts/exporter.js",
+    "db:import": "node --env-file=.env.development ./scripts/importer.js",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "dev": "node --watch --env-file=.env.development ./src/index.js",
@@ -17,7 +19,6 @@
     "@eslint/js": "^9.39.2",
     "@types/express": "^5.0.6",
     "@types/node": "^25.0.1",
-    "@types/pg": "^8.16.0",
     "drizzle-kit": "^0.31.8",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
@@ -26,6 +27,9 @@
     "prettier": "^3.7.4"
   },
   "dependencies": {
+    "@libsql/client": "^0.15.15",
+    "@paralleldrive/cuid2": "^3.0.4",
+    "@sqlitecloud/drivers": "^1.0.715",
     "cookie-parser": "^1.4.7",
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.45.1",
@@ -33,7 +37,6 @@
     "express-rate-limit": "^8.2.1",
     "express-session": "^1.18.2",
     "nunjucks": "^3.2.4",
-    "pg": "^8.16.3",
     "pino": "^10.1.0",
     "pino-http": "^11.0.0",
     "pino-pretty": "^13.1.3",
