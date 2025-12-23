@@ -1,0 +1,360 @@
+/* Base UI Card*/
+.ui-card {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-subtle);
+  border-radius: var(--border-radius-lg);
+  transition: all 0.3s ease;
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+}
+
+.ui-card:hover {
+  border-color: var(--color-secondary);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.add-new-card {
+  border: 2.5px dashed var(--color-subtle);
+  background: transparent;
+  color: var(--color-secondary-dk);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.add-new-card:hover {
+  border-color: var(--color-secondary);
+  background: var(--color-table-hover);
+  color: var(--color-primary);
+}
+
+/* Modal Dialog */
+.ui-modal {
+  border: 1px solid var(--color-subtle);
+  border-radius: var(--border-radius-lg);
+  padding: 0;
+  width: 90%;
+  max-width: 45rem;
+
+  /* Perfect Centering */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0; /* Override default dialog margins */
+
+  background: var(--color-background);
+  color: var(--color-text-base);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Ensure backdrop covers everything */
+.ui-modal::backdrop {
+  background: rgba(26, 19, 31, 0.8); /* Darker version of your table-text-main */
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  padding: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+/* FILTER */
+.filter-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.filter-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-pill {
+  padding: 0.8rem 1.6rem;
+  border-radius: 50px;
+  background: var(--color-background);
+  border: 1px solid var(--color-subtle);
+  color: var(--color-table-text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-pill:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.filter-pill.active {
+  background: var(--color-primary); /* Electric Violet */
+  color: var(--color-accent);    /* Neon Yellow Text */
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(89, 13, 130, 0.2);
+}
+
+/* Hidden state for filtered cards */
+.activity-card.is-hidden {
+  display: none;
+}
+
+
+/* BUTTONS --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  text-decoration: none;
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  padding: 1rem 2rem;
+  border: 2px solid transparent;
+  line-height: 1;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Button Variants */
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+  border-color: var(--color-accent);
+}
+
+.btn-primary:hover {
+  background-color: color-mix(in srgb, var(--color-accent) 90%, black);
+  border-color: color-mix(in srgb, var(--color-accent) 90%, black);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  border-color: var(--color-secondary);
+}
+
+.btn-secondary:hover {
+  background-color: color-mix(in srgb, var(--color-secondary) 90%, black);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+.btn-small {
+  max-height: 2.4rem;
+  padding: 0.5rem 1rem;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+}
+
+/* Utility for text-only buttons (like Delete) */
+.btn-text-only {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--color-error);
+  font-weight: bold;
+  font-size: var(--font-size-xxs);
+  text-transform: uppercase;
+}
+
+.btn-text-only:hover {
+  text-decoration: underline;
+  box-shadow: none;
+  transform: none;
+}
+
+/* --- 2. ICONS --- */
+.icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  display: inline-block;
+  vertical-align: middle;
+  transition: all 0.2s ease;
+}
+
+.icon-lg { width: 2.8rem; height: 2.8rem; }
+.icon-xl { width: 3.2rem; height: 3.2rem; }
+
+.icon-mirrored { transform: scaleX(-1); }
+
+/* Animation Logic */
+.btn:hover .icon-edit { transform: rotate(-15deg) scale(1.1); }
+.btn-link:hover .icon-mirrored { transform: scaleX(-1) translateX(4px); }
+.view-link:hover .icon:not(.icon-mirrored) { transform: translateX(4px); }
+
+/* --- 3. VIEW HEADERS --- */
+.view-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-subtle);
+}
+
+.header-title-area { display: flex; align-items: center; gap: 1rem; }
+.header-title-area h1 { color: var(--color-primary); margin: 0; }
+
+/* --- 4. DATA TABLES --- */
+.data-table {
+  align-self: flex-start;
+  display: table;
+  table-layout: auto;
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--color-table-text-main);
+}
+
+.data-table tr {
+  height: auto; /* Force natural height */
+}
+.data-table th {
+  text-align: left;
+  border-bottom: 1px solid var(--color-table-border);
+  vertical-align: middle;
+  padding: 1.2rem;
+  color: var(--color-table-text-muted);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+}
+
+.data-table td {
+  padding: 1.8rem 1.2rem;
+  border-bottom: 1px solid var(--color-table-border);
+}
+
+.data-table tbody tr:hover {
+  background-color: var(--color-table-hover);
+  box-shadow: inset 4px 0 0 var(--color-table-accent);
+}
+
+/* --- 5. LINKS --- */
+.view-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-table-accent);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.view-link:hover { text-decoration: underline; }
+
+.activity-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.activity-item {
+  border-bottom: 1px solid var(--color-table-border);
+  transition: background-color 0.2s;
+}
+
+.activity-item:hover {
+  background-color: var(--color-table-hover);
+}
+
+.activity-link {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Row 1: Strong Title and Kind */
+.activity-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.activity-title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-table-text-main);
+}
+
+.activity-kind-pill {
+  font-size: var(--font-size-xxs);
+  text-transform: uppercase;
+  color: var(--color-primary); /* Electric Violet */
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* Row 2: Subtle Meta Stats */
+.activity-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+  color: var(--color-table-text-muted);
+  font-size: var(--font-size-xs);
+}
+
+.meta-data {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.meta-data .icon {
+  width: 1.4rem;
+  height: 1.4rem;
+  stroke-width: 2;
+}
+
+.meta-date {
+  margin-left: auto; /* Pushes date to the right if space allows */
+  opacity: 0.8;
+}
+
+/* The Arrow */
+.list-arrow {
+  margin-left: 1.5rem;
+  color: var(--color-subtle);
+  width: 1.8rem;
+  height: 1.8rem;
+}

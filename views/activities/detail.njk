@@ -1,0 +1,66 @@
+{# views/activities/detail.njk #}
+{% extends "layouts/layout.njk" %}
+{% import "macros/ui.njk" as ui %}
+
+{% block head %}
+  <link rel="stylesheet" href="/css/activity-detail.css" />
+{% endblock %}
+
+{% block main %}
+<div class="container main-content">
+
+  <header class="view-header">
+    <div class="header-title-area">
+      {{ ui.icon('ico-activity', class='icon-xl') }}
+      <h1>{{ title }}</h1>
+    </div>
+
+    <div class="header-action-area">
+      <a href="/activities" class="btn-link back-navigation">
+        <span>Back to Activities</span>
+        {{ ui.icon('ico-chevron-right', class="icon-lg") }}
+      </a>
+    </div>
+  </header>
+
+  <article class="detail-card">
+    <header class="card-hero">
+      <div class="hero-top">
+        <time class="text-date">{{ activity.when | shortDate }}</time>
+        <span class="kind-tag">{{ activity.kindName }}</span>
+      </div>
+      {# Big title inside the hero as well #}
+      <h2 class="text-lg">{{ activity.title }}</h2>
+    </header>
+
+    <div class="card-content">
+      <div class="stats-grid">
+        {{ ui.statItem("Distance", activity.distance, "km") }}
+        {{ ui.statItem("Duration", activity.duration | formatSeconds) }}
+        {{ ui.statItem("Elevation", activity.elevation, "m") }}
+        {{ ui.statItem("Calories", activity.calories, "kcal") }}
+      </div>
+
+      <div class="memo-section">
+        <h2 class="section-title">Description</h2>
+        <p class="memo-text">{{ activity.description | default("No description provided.") }}</p>
+      </div>
+    </div>
+
+    <footer class="card-footer">
+      <a href="/activities/{{ activity.id }}/edit" class="btn btn-primary btn-full">
+        {{ ui.icon('ico-edit', class='icon-edit') }}
+        <span>Edit Activity</span>
+      </a>
+
+      <button class="btn-text-only"
+        data-confirm="/activities/{{ activity.id }}/delete"
+        data-modal-title="Delete Activity?"
+        data-modal-body="Permanently remove '{{ activity.title }}' from your history?"
+        data-modal-btn="Delete Activity"
+        data-modal-class="btn-primary btn-danger-hover"
+      >Delete</button>
+    </footer>
+  </article>
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{# views/kinds/add.njk #}
+{% extends "layouts/layout.njk" %}
+{% import "macros/ui.njk" as ui %}
+
+{% block head %}
+  <link rel="stylesheet" href="/css/forms.css" />
+  <link rel="stylesheet" href="/css/activityedit.css" />
+{% endblock %}
+
+{% block main %}
+<div class="container container-narrow main-content">
+
+  <header class="view-header">
+    <div class="header-title-area">
+      {{ ui.icon('ico-edit', class='icon-lg') }}
+      <h1 class="text-md">New Activitykind</h1>
+    </div>
+
+    <a href="/activitykinds/" class="btn-link back-navigation">
+      <span>Back to ActivityKinds</span>
+      {{ ui.icon('ico-chevron-right') }}
+    </a>
+  </header>
+
+  <form
+    action="/activitykinds/create"
+    method="POST"
+    class="detail-card"
+  >
+    <div class="form-body">
+      {# ActivityKind Name #}
+      {{ ui.field(
+        label="Activity Kind Name",
+        id="name",
+        name="name",
+        value=payload.name,
+        placeholder="e.g., Strength Training",
+        error=error.name
+      ) }}
+
+      {# Icon Name #}
+      <div class="form-group">
+        <label class="form-label">Icon Identifier</label>
+        <select name="iconName" class="form-input">
+          <option value="ico-activity" {% if payload.iconName == 'ico-activity' %}selected{% endif %}>General</option>
+          <option value="ico-run" {% if payload.iconName == 'ico-run' %}selected{% endif %}>Running</option>
+          <option value="ico-bike" {% if payload.iconName == 'ico-bike' %}selected{% endif %}>Cycling</option>
+          <option value="ico-swim" {% if payload.iconName == 'ico-swim' %}selected{% endif %}>Swimming</option>
+        </select>
+        <small class="field-hint">This icon will appear on the dashboard cards.</small>
+      </div>
+
+      {# Description / Memo #}
+      {{ ui.field(
+        label="Notes & Description",
+        id="description",
+        name="description",
+        value=payload.description,
+        memo=true,
+        placeholder="Describe your activitykind...",
+        error=error.description
+      ) }}
+    </div>
+
+    {# Commands Footer #}
+    <footer class="card-footer">
+      <button type="submit"
+        class="btn btn-primary btn-full"
+      >
+        <span>Create Activitykind</span>
+      </button>
+
+      <a href="/activitykinds" class="btn btn-outline btn-full">
+        Cancel
+      </a>
+    </footer>
+  </form>
+</div>
+{% endblock %}

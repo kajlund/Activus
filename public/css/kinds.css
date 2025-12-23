@@ -1,0 +1,80 @@
+.kind-grid {
+  display: grid;
+  /* Automatically fits as many 16rem cards as possible */
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 2.5rem;
+  width: 100%;
+}
+
+.kind-card {
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  min-height: 20rem;
+}
+
+.kind-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.kind-name {
+  font-weight: 800;
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.kind-card .icon-xl {
+  color: var(--color-primary); /* Electric Violet */
+  filter: drop-shadow(0 2px 4px rgba(89, 13, 130, 0.1)); /* Very subtle violet shadow */
+}
+
+.kind-card:hover .icon-xl {
+  transform: scale(1.1) rotate(-5deg); /* Playful hover for the card icon */
+}
+
+/* Action Bar inside Card */
+.kind-card-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  width: 100%;
+  border-top: 1px solid var(--color-table-border);
+  padding-top: 1rem;
+  width: 100%;
+}
+
+.btn-icon-link {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  color: var(--color-table-text-muted);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-icon-link:hover {
+  color: var(--color-secondary);
+}
+
+.btn-danger-text:hover {
+  color: var(--color-error);
+}
+
+.add-kind-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+  color: var(--color-secondary-dk);
+  gap: 1rem;
+}

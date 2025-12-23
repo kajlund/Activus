@@ -1,0 +1,65 @@
+
+{% macro field(label, id, name, value="", type="text", placeholder="", memo=false, error="") %}
+<div class="form-group">
+  <label for="{{ id }}" class="form-label">{{ label }}</label>
+
+  {% if memo %}
+    <textarea
+      id="{{ id }}"
+      name="{{ name }}"
+      class="form-input form-textarea {% if error %}is-invalid{% endif %}"
+      placeholder="{{ placeholder }}">{{ value }}</textarea>
+  {% else %}
+    <input
+      type="{{ type }}"
+      id="{{ id }}"
+      name="{{ name }}"
+      value="{{ value }}"
+      class="form-input {% if error %}is-invalid{% endif %}"
+      placeholder="{{ placeholder }}">
+  {% endif %}
+
+  {% if error %}
+    <span class="field-error-msg">{{ error }}</span>
+  {% endif %}
+</div>
+{% endmacro %}
+
+{% macro durationField(label, hrs=0, mins=0, secs=0, error="") %}
+<div class="form-group">
+  <label class="form-label">{{ label }}</label>
+  <div class="duration-input-group {% if error %}is-invalid{% endif %}">
+    <div class="time-unit">
+      <input type="number" name="hrs" value="{{ hrs }}" min="0" max="99" placeholder="HH">
+      <span>h</span>
+    </div>
+    <div class="time-unit">
+      <input type="number" name="mins" value="{{ mins }}" min="0" max="59" placeholder="MM">
+      <span>m</span>
+    </div>
+    <div class="time-unit">
+      <input type="number" name="secs" value="{{ secs }}" min="0" max="59" placeholder="SS">
+      <span>s</span>
+    </div>
+  </div>
+  {% if error %}
+    <span class="field-error-msg">{{ error }}</span>
+  {% endif %}
+</div>
+{% endmacro %}
+
+{% macro icon(id, class="", mirrored=false) %}
+<svg class="icon {{ class }} {% if mirrored %}icon-mirrored{% endif %}" aria-hidden="true">
+  <use xlink:href="#{{ id }}"></use>
+</svg>
+{% endmacro %}
+
+{% macro statItem(label, value, unit="") %}
+  <div class="stat-item">
+    <span class="stat-label">{{ label }}</span>
+    <span class="stat-value">
+      {{ value }}
+      {% if unit %}<small>{{ unit }}</small>{% endif %}
+    </span>
+  </div>
+{% endmacro %}

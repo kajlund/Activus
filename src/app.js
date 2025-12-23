@@ -46,12 +46,40 @@ export function getApp(cnf, log) {
   );
 
   // Set view engine
-  nunjucks.configure('views', {
+  const nj = nunjucks.configure('views', {
     autoescape: true,
     express: app,
-    noCache: process.env.NODE_ENV !== 'production',
+    noCache: cnf.isDev,
   });
   app.set('view engine', 'njk'); // set as default
+
+  nj.addFilter('formatSeconds', function (sec) {
+    if (!sec) return '00:00:00';
+    const h = Math.floor(sec / 3600);
+    const m = Math.floor((sec % 3600) / 60);
+    const s = sec % 60;
+    // Helper to add leading zeros
+    const pad = (num) => num.toString().padStart(2, '0');
+    return `${pad(h)}:${pad(m)}:${pad(s)}`;
+  });
+
+  nj.addFilter('shortDate', function (date) {
+    return new Date(date).toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+    });
+  });
+
+  nj.addFilter('dateIso', function (date) {
+    if (!date) return '';
+    const d = new Date(date);
+    return d.toISOString().split('T')[0]; // Returns "2025-12-21"
+  });
+
+  nj.addFilter('floor', function (num) {
+    return Math.floor(num);
+  });
 
   // Logging Middleware
   if (cnf.logHttp) {

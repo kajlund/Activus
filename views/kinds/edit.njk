@@ -1,60 +1,83 @@
+{# kinds/edit.njk #}
 {% extends "layouts/layout.njk" %}
+{% import "macros/ui.njk" as ui %}
 
 {% block head %}
   <link rel="stylesheet" href="/css/forms.css" />
+  <link rel="stylesheet" href="/css/activityedit.css" />
 {% endblock %}
 
 {% block main %}
-<section class="page-header">
-  <h2>{{ title }}</h2>
-  <div class="commands">
-    <a href="/activitykinds" class="btn btn-outline">
-      <i data-feather="chevron-left"></i> Back
-    </a>
-  </div>
-</section>
+<div class="container container-narrow main-content">
 
-<section class="form-container">
-  <form method="post" action="
-  {% if insertMode %}/activitykinds/create{% else %}/activitykinds/update/{{kind.id}}{% endif %}
-  ">
+  <header class="view-header">
+    <div class="header-title-area">
+      {{ ui.icon('ico-edit', class='icon-xl') }}
+      <h1>Edit Activity</h1>
+    </div>
 
-    <div class="form-section">
-      <div class="input-group">
-        <label for="name" class="input-label">Name</label>
-        <input type="text" id="name" name="name"
-          class="input"
-          placeholder="Name of activity kind"
-          value="{{kind.name}}"
-        >
-        <p class="field-error">{{error.name}}</p>
-      </div>
-      <div class="input-group">
-        <label for="description" class="input-label">Description</label>
-        <textarea id="description" name="description"
-          class="input textarea"
-          placeholder="Description"
-        >{{kind.description}}</textarea>
-        <p class="input-error">{{error.description}}</p>
-      </div>
+    <div class="header-action-area">
+      <a href="/activitykinds" class="btn-link back-navigation">
+        <span>Back to ActivityKinds</span>
+        {{ ui.icon('ico-chevron-right', class='icon-lg' ) }}
+      </a>
     </div>
-    <div class="form-commands">
-      {% if not insertMode %}
-        <a class="btn btn-secondary btn-outline" href="/activitykinds/delete/{{kind.id}}">
-          <i data-feather="trash-2" class="icon"></i>
-          Delete
-        </a>
-        <button class="btn btn-secondary" type="submit">
-          <i data-feather="check" class="icon"></i>
-          Update
-        </button>
-      {% else %}
-        <button class="btn btn-secondary" type="submit">
-          <i data-feather="save" class="icon"></i>
-          Save
-        </button>
-      {% endif %}
+  </header>
+
+  <form
+    action="/activitykinds/{{ kind.id }}/update"
+    method="POST"
+    class="detail-card"
+  >
+    <div class="form-body">
+      {# ActivityKind Name #}
+      {{ ui.field(
+        label="Activity Kind Name",
+        id="name",
+        name="name",
+        value=kind.name,
+        placeholder="e.g., Strength Training",
+        error=errors.title
+      ) }}
+
+      {# Icon Name #}
+      <div class="form-group">
+        <label class="form-label">Icon Identifier</label>
+        <select name="iconName" class="form-input">
+          <option value="ico-activity" {% if kind.iconName == 'ico-activity' %}selected{% endif %}>General</option>
+          <option value="ico-bike" {% if kind.iconName == 'ico-bike' %}selected{% endif %}>Cycling</option>
+          <option value="ico-gym" {% if kind.iconName == 'ico-gym' %}selected{% endif %}>Gym</option>
+          <option value="ico-meditation" {% if kind.iconName == 'ico-meditation' %}selected{% endif %}>Meditation</option>
+          <option value="ico-run" {% if kind.iconName == 'ico-run' %}selected{% endif %}>Running</option>
+          <option value="ico-swim" {% if kind.iconName == 'ico-swim' %}selected{% endif %}>Swimming</option>
+          <option value="ico-walk" {% if kind.iconName == 'ico-walk' %}selected{% endif %}>Walking</option>
+        </select>
+        <small class="field-hint">This icon will appear on the dashboard cards.</small>
+      </div>
+
+      {# Description / Memo #}
+      {{ ui.field(
+        label="Notes & Description",
+        id="description",
+        name="description",
+        value=kind.description,
+        memo=true,
+        placeholder="Describe your activitykind...",
+        error=errors.description
+      ) }}
     </div>
+
+    {# Commands Footer #}
+    <footer class="card-footer">
+      <button type="submit"
+        class="btn btn-primary btn-full"
+      >{{ ui.icon('ico-edit') }}
+        <span>Save Changes</span>
+      </button>
+      <a href="/activitykinds"
+        class="btn btn-outline btn-full"
+      >Discard</a>
+    </footer>
   </form>
-</section>
+</div>
 {% endblock %}

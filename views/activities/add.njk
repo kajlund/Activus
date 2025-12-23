@@ -1,0 +1,104 @@
+{# views/activities/add.njk #}
+{% extends "layouts/layout.njk" %}
+{% import "macros/ui.njk" as ui %}
+
+{% block head %}
+  <link rel="stylesheet" href="/css/forms.css" />
+  <link rel="stylesheet" href="/css/activityedit.css" />
+{% endblock %}
+
+{% block main %}
+<div class="container container-narrow main-content">
+
+  <header class="view-header">
+    <div class="header-title-area">
+      {{ ui.icon('ico-activity', class='icon-lg') }}
+      <h1 class="text-md">New Activity</h1>
+    </div>
+
+    <a href="/activities" class="btn-link back-navigation">
+      <span>Back to Activities</span>
+      {{ ui.icon('ico-chevron-right') }}
+    </a>
+  </header>
+
+  {# Action points to the create route #}
+  <form action="/activities/create"
+    method="POST"
+    class="detail-card"
+  >
+
+    <div class="form-body">
+
+      {{ ui.field(
+        label="Activity Title",
+        id="title",
+        name="title",
+        value=payload.title,
+        placeholder="What did you do today?",
+        error=error.title
+      ) }}
+
+      <div class="form-grid">
+        {{ ui.field(
+          label="Date",
+          id="when",
+          name="when",
+          value=payload.when | dateIso,
+          type="date",
+          error=error.when
+        ) }}
+
+        <div class="form-group">
+          <label for="kindId" class="form-label">Activity Kind</label>
+          <select id="kindId" name="kindId" class="form-input {% if error.kindId %}is-invalid{% endif %}">
+            <option value="" disabled selected>Select activity type...</option>
+            {% for kind in activityKinds %}
+              <option value="{{ kind.id }}" {% if kind.id == payload.kindId %}selected{% endif %}>
+                {{ kind.name }}
+              </option>
+            {% endfor %}
+          </select>
+          {% if error.kindId %}
+            <span class="field-error-msg">{{ error.kindId }}</span>
+          {% endif %}
+        </div>
+      </div>
+
+      {# Numeric Stats Grid #}
+      <div class="form-grid">
+        {{ ui.field("Distance (km)", "distance", "distance", payload.distance, type="number", error=error.distance) }}
+
+        {# Multi-input Duration Macro #}
+        {{ ui.durationField("Duration", hrs, mins, secs, error=errors.duration) }}
+      </div>
+
+      <div class="form-grid">
+        {{ ui.field("Elevation (m)", "elevation", "elevation", payload.elevation, type="number", error=error.elevation) }}
+        {{ ui.field("Calories", "calories", "calories", payload.calories, type="number", error=error.calories) }}
+      </div>
+
+      {{ ui.field(
+        label="Notes & Description",
+        id="description",
+        name="description",
+        value=payload.description,
+        memo=true,
+        placeholder="Add some details about your workout...",
+        error=error.description
+      ) }}
+    </div>
+
+    {# Commands Footer #}
+    <footer class="card-footer">
+      <button type="submit" class="btn btn-primary btn-full">
+        <span>Create Activity</span>
+      </button>
+
+      <a href="/activities" class="btn btn-outline btn-full">
+        Cancel
+      </a>
+    </footer>
+  </form>
+</div>
+{% endblock %}

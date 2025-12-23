@@ -1,4 +1,4 @@
-{# layout.njk #}
+{# layouts/layout.njk #}
 {% from "macros/toast.njk" import showToasts %}
 <!DOCTYPE html>
 <html lang="en">
@@ -13,8 +13,8 @@
   <link rel="icon" type="image/png" sizes="256x256" href="/img/icon-256x256.png">
   <title>Activus - {{title}}</title>
 
-  <link rel="stylesheet" href="/css/_main.css">
-  <link rel="stylesheet" href="/css/button.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
   <link rel="stylesheet" href="/css/nav.css">
   <link rel="stylesheet" href="/css/toasts.css">
 
@@ -28,14 +28,30 @@
   {% endblock %}
 
   <main>
-  {% block main %}
-    Main Content (Flexible)
-  {% endblock %}
+    <section class="main-content">
+      <div class="container {% block containerClass %}{% endblock %}">
+      {% block main %}{% endblock %}
+      </div>
+    </section>
   </main>
 
   {% block footer %}
-    <footer>Copyright LuKa, 2025</footer>
+    <footer class="site-footer">Copyright LuKa, 2025</footer>
   {% endblock %}
+
+  <dialog id="generic-confirm-modal" class="ui-modal">
+    <div class="modal-content">
+      <h3 id="modal-title" class="text-md">Confirm Action</h3>
+      <p id="modal-body" class="small">Are you sure you want to proceed?</p>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" id="modal-cancel">Cancel</button>
+        <form id="modal-confirm-form" method="POST">
+          <button type="submit" id="modal-confirm-btn" class="btn btn-primary">Confirm</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
 
   {# 'messages' comes from res.locals.messages via your Express middleware #}
   {# <pre>{{ messages | dump }}</pre> #}

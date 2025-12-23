@@ -6,22 +6,18 @@ export function getActivityKindsController(cnf, log) {
 
   return {
     showActivityKindViews: asyncHandler(async (req, res) => {
-      const kinds = await svc.queryActivityKinds();
-      res.render('kinds/list', {
+      const activityKinds = await svc.queryActivityKinds();
+      res.render('kinds/index', {
         title: 'Activity Kinds',
         page: 'kinds',
-        kinds,
+        activityKinds,
       });
     }),
     showAddView: asyncHandler(async (req, res) => {
-      res.render('kinds/edit', {
+      res.render('kinds/add', {
         title: 'Add ActivityKind',
         page: 'kinds',
-        insertMode: true,
-        kind: {
-          name: '',
-          description: '',
-        },
+        kind: {},
         errors: {},
       });
     }),
@@ -43,10 +39,9 @@ export function getActivityKindsController(cnf, log) {
       const payload = req.body;
       const result = await svc.createActivityKind(payload);
       if (result.error) {
-        res.render('kinds/edit', {
-          title: 'Add ActivityKind',
+        res.render('kinds/add', {
+          title: 'New ActivityKind',
           page: 'kinds',
-          insertMode: true,
           kind: payload,
           error: result.error,
           messages: { error: ['Validation errors'] },

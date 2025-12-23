@@ -1,0 +1,136 @@
+/* --- 1. CARD STRUCTURE --- */
+.detail-card {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-subtle);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* --- 2. HERO BANNER --- */
+.card-hero {
+  padding: 3rem 2rem;
+  background-color: var(--color-primary); /* Electric Violet */
+  color: var(--color-text-on-dark);
+}
+
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.kind-tag {
+  background-color: var(--color-accent); /* Neon Yellow */
+  color: var(--color-primary);
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--border-radius-xs);
+  font-weight: 800;
+  font-size: var(--font-size-xxs);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.text-date {
+  color: var(--color-secondary); /* Vivid Lavender */
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+}
+
+/* --- 3. STATS BAR --- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  background-color: var(--color-table-hover);
+  border-bottom: 1px solid var(--color-table-border);
+}
+
+.stat-item {
+  padding: 2rem;
+  border-right: 1px solid var(--color-table-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stat-label {
+  color: var(--color-table-text-muted);
+  font-size: var(--font-size-xxs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.stat-value {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  color: var(--color-table-text-main);
+}
+
+.stat-value small {
+  font-size: 0.6em;
+  margin-left: 4px;
+  opacity: 0.7;
+}
+
+/* --- 4. MEMO / DESCRIPTION --- */
+.memo-section {
+  padding: 3rem 2rem;
+}
+
+.section-title {
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.memo-text {
+  line-height: 1.8;
+  color: var(--color-text-base);
+  font-size: var(--font-size-xs);
+  white-space: pre-wrap; /* Crucial for preserving user line breaks */
+}
+
+/* --- 5. FOOTER COMMANDS --- */
+.card-footer {
+  padding: 2rem;
+  background-color: var(--color-table-hover);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-top: 1px solid var(--color-table-border);
+}
+
+.btn-full {
+  width: 100%;
+  padding: 1.5rem !important;
+  font-size: var(--font-size-sm) !important;
+}
+
+.btn-danger-hover:hover {
+  border-color: var(--color-error) !important;
+  background-color: var(--color-error) !important;
+  color: white !important;
+}
+
+/* --- 6. RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 767px) {
+  .stat-item {
+    border-right: none;
+    border-bottom: 1px solid var(--color-table-border);
+  }
+  .stat-item:last-child {
+    border-bottom: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .card-footer {
+    flex-direction: row;
+  }
+  .stat-item:last-child {
+    border-right: none;
+  }
+}

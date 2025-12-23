@@ -1,3 +1,8 @@
+/*
+  base.css
+  Global environment: Variables, resets, core layout (Header/Footer), and typography.
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
@@ -35,6 +40,11 @@
   /* Subtle Accent - Light Lavender, Borders, dividers, subtle section separators, inactive states.*/
   --color-subtle: #DDD3E6; /* For borders/hints */
   --color-error: #FF4C4C; /* Bright Red for error messages */
+  --color-table-hover: #EBEBEB;
+  --color-table-border: #E0E0E0;
+  --color-table-text-main: #1A131F;
+  --color-table-text-muted: #666666;
+  --color-table-accent: #7C3AED;
 
   /* Header/Footer Specific Variables */
   --header-footer-bg: var(--color-primary);
@@ -44,12 +54,19 @@
   --border-radius-xs: 0.4rem;
   --border-radius: 0.8rem;
   --border-radius-lg: 1.2rem;
+  --container-max-width: 120rem;
+  --container-narrow-width: 85rem;
 }
 
 .dark-mode {
   --color-background: #0D0610; /* Richer, softer black */
   --color-text-base: #E0E0E0; /* Slightly less harsh white */
   --color-subtle: #8A609C; /* For borders/hints */
+  --color-table-hover: #1A1220;
+  --color-table-border: #251B2E;
+  --color-table-text-main: #F5F3F7;
+  --color-table-text-muted: #948B9B;
+  --color-table-accent: #A78BFA;
   /* Header/Footer Specific Variables - Colors remain the same as they work on the dark background */
   --header-footer-bg: var(--color-primary);
   --header-footer-text: #E0E0E0;
@@ -76,7 +93,7 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100vh;
 
   font-family: var(--primary-font);
   font-size: var(--font-size-md);
@@ -99,9 +116,11 @@ a:hover {
 
 main {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
-
-footer {
+.site-footer {
+  flex-shrink: 0;
   background-color: var(--header-footer-bg);
   font-size: var(--font-size-xs);
   color: var(--header-footer-text);
@@ -109,6 +128,7 @@ footer {
 }
 
 .site-header {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   background-color: var(--color-primary);
@@ -121,7 +141,6 @@ footer {
 
 .main-nav {
   flex: 1;
-  background-color: var(--color-primary);
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -191,3 +210,41 @@ footer {
 .dark-mode .moon-icon {
   display: none;
 }
+
+/* The global wrapper for all content */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+}
+
+.container-narrow {
+  max-width: var(--container-narrow-width);
+}
+
+/* Vertical spacing for the main block inside the layout */
+.main-content {
+  padding-top: 1rem;
+  padding-bottom: 6rem;
+  width: 100%;
+}
+
+/* Common Text Utilities */
+.text-lg { font-size: var(--font-size-lg); font-weight: 700; line-height: 1.1; }
+.text-md { font-size: var(--font-size-md); font-weight: 700; }
+.text-sm { font-size: var(--font-size-sm); }
+
+.small {
+  display: block;
+  color: var(--color-table-text-muted);
+  font-size: 0.85rem;
+}
+
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+
+
+

@@ -1,101 +1,116 @@
-
-.page-header {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--color-subtle);
-  padding: 1.5rem 2rem;
-  margin-bottom: 2rem;
-}
-
-.page-header .commands {
-  margin-left: auto;
-}
-
-.form-container {
-  max-width: 40rem;
-  margin: 2rem auto;
-  padding: 2rem;
-  border: 1px solid var(--color-subtle);
-  border-radius: 1rem;
-  background-color: var(--color-surface);
-}
-
-.form-section {
-  margin-bottom: 2rem;
-}
-
-.form-commands {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 4rem;
-}
-
-.input-group {
+/* --- 1. FORM LAYOUT --- */
+.form-body {
+  padding: 3rem 2rem;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.5rem;
+  gap: 2rem;
 }
 
-.field-error {
-  color: var(--color-error);
-  font-size: var(--font-size-xs);
-  margin-left: 0.5rem;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-label {
-  font-size: var(--font-size-xs);
-  margin-left: 0.2rem;
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-textarea,
-select {
-  /* Base Look */
+/* --- 2. LABELS & INPUTS --- */
+.form-label {
+  font-size: var(--font-size-xxs);
+  text-transform: uppercase;
+  color: var(--color-secondary-dk);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.form-input {
   width: 100%;
-  padding: 0.6rem;
+  padding: 1rem;
+  background-color: var(--color-table-hover);
+  border: 2px solid var(--color-table-border);
   border-radius: var(--border-radius-xs);
-  border: 1px solid; /* Defined by mode below */
+  color: var(--color-text-base);
+  font-size: var(--font-size-xs);
+  font-family: var(--primary-font);
+  transition: all 0.2s ease;
+}
+
+/* Focus State - Neon Yellow Glow */
+.form-input:focus {
   outline: none;
-  font-size: 1rem;
-  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 15%, transparent);
 }
 
-/* LIGHT MODE INPUTS */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-textarea,
-select {
-  color: var(--color-text-base); /* Dark Gray text */
-  background-color: #FFFFFF;
-  border-color: var(--color-subtle-border); /* Light Lavender border */
+/* --- 3. DURATION / TIME INPUTS --- */
+.duration-input-group {
+  display: flex;
+  gap: 0.5rem;
+  background-color: var(--color-table-hover);
+  border: 2px solid var(--color-table-border);
+  border-radius: var(--border-radius-xs);
+  padding: 0.25rem 0.5rem;
+  transition: all 0.2s ease;
 }
 
-/* Focus State: Use the Primary Color for a sharp, branded glow */
-input:focus, textarea:focus, select:focus {
-  border-color: var(--color-primary); /* Electric Violet border */
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
+.duration-input-group:focus-within {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 15%, transparent);
 }
 
-/* DARK MODE INPUTS */
-.dark-mode input[type="text"],
-.dark-mode input[type="email"],
-.dark-mode input[type="password"],
-.dark-mode textarea,
-.dark-mode select {
-  color: var(--color-text-on-dark); /* Light Gray text */
-  /* Make input darker than surface but lighter than page background for depth */
-  background-color: color-mix(in srgb, var(--color-surface) 90%, black);
-  border-color: #555555; /* Visible gray border */
+.time-unit {
+  display: flex;
+  align-items: center;
+  flex: 1;
 }
 
-/* Focus State: Use a brighter version of the Primary Color for focus glow */
-.dark-mode input:focus,
-.dark-mode textarea:focus,
-.dark-mode select:focus {
-  border-color: var(--color-secondary); /* Vivid Lavender border for brightness */
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-secondary) 30%, transparent);
+.time-unit input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 0.75rem 0.25rem;
+  text-align: center;
+  font-family: var(--primary-font);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-base);
+  appearance: textfield; /* Removes browser arrows */
 }
 
+.time-unit input:focus { outline: none; }
+
+.time-unit span {
+  font-size: var(--font-size-xxs);
+  color: var(--color-table-text-muted);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* --- 4. VALIDATION & HINTS --- */
+.form-input.is-invalid,
+.duration-input-group.is-invalid {
+  border-color: var(--color-error);
+  background-color: color-mix(in srgb, var(--color-error) 5%, var(--color-background));
+}
+
+.field-error-msg {
+  color: var(--color-error);
+  font-size: var(--font-size-xxs);
+  font-weight: 600;
+  margin-top: 0.2rem;
+}
+
+.field-hint {
+  font-size: 0.7rem;
+  color: var(--color-table-text-muted);
+  font-style: italic;
+  margin-top: 0.2rem;
+}
+
+.form-textarea {
+  min-height: 12rem;
+  resize: vertical;
+}

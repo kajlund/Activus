@@ -1,0 +1,87 @@
+{# views/activities/index.njk #}
+{% extends "layouts/layout.njk" %}
+{% import "macros/ui.njk" as ui %}
+
+{% block head %}
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/activities.css" />
+{% endblock %}
+
+{% block main %}
+<div class="container main-content">
+  <header class="view-header">
+    <div class="header-title-area">
+      {{ ui.icon('ico-activity', class='icon-right') }}
+      <h1>{{ title }}</h1>
+    </div>
+
+    <div class="header-action-area">
+      <a href="/activities/new" class="btn btn-outline">
+        <span>New Activity</span>
+        {{ ui.icon('ico-edit', class="icon-lg") }}
+      </a>
+    </div>
+  </header>
+
+  <div class="filter-wrapper">
+    <div class="filter-group" id="activity-filters">
+      <button class="filter-pill active" data-filter="all">All Activities</button>
+      {% for kind in activityKinds %}
+        <button class="filter-pill" data-filter="{{ kind.name | lower }}">
+          {{ kind.name }}
+        </button>
+      {% endfor %}
+    </div>
+    <div class="filter-stats small">
+      Showing <span id="visible-count">{{ activities.length }}</span> activities
+    </div>
+  </div>
+
+  <div class="activity-grid">
+  {% for activity in activities %}
+    <a href="/activities/{{ activity.id }}" class="ui-card activity-card">
+
+      <div class="activity-card-header">
+        <div class="header-left">
+          <div class="activity-card-icon">
+            {{ ui.icon(activity.kindIcon | default('ico-activity'), class='icon-lg') }}
+          </div>
+          <span class="kind-tag filter-target">{{ activity.kindName }}</span>
+        </div>
+        <span class="text-date">{{ activity.when | shortDate }}</span>
+      </div>
+
+      <div class="activity-card-body">
+        <h3 class="text-md">{{ activity.title }}</h3>
+
+        <div class="activity-stats-row">
+          <div class="stat">
+            {{ ui.icon('ico-clock') }}
+            <span>{{ activity.duration | formatSeconds }}</span>
+          </div>
+          <div class="stat">
+            {{ ui.icon('ico-distance') }}
+            <span>{{ activity.distance }}km</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="activity-card-footer">
+        <span class="view-link">View Details {{ ui.icon('ico-chevron-right') }}</span>
+      </div>
+    </a>
+  {% endfor %}
+  {# The "Add New" Card #}
+  <a href="/activities/new" class="ui-card activity-card add-activity-card">
+    <div class="add-card-content">
+      <div class="add-icon-circle">
+        {{ ui.icon('ico-plus', class='icon-xl') }}
+      </div>
+      <div class="add-text">
+        <span class="text-md">Log New Activity</span>
+        <p class="small">Record a new workout or session</p>
+      </div>
+    </div>
+  </a>
+</div>
+{% endblock %}

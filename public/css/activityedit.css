@@ -1,0 +1,83 @@
+/* --- 2. THE DETAIL/FORM CARD --- */
+.detail-card {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-subtle);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.card-hero {
+  padding: 3rem 2rem;
+  background-color: var(--color-primary); /* Electric Violet */
+  color: var(--color-text-on-dark);
+}
+
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.kind-tag {
+  background-color: var(--color-accent); /* Neon Yellow */
+  color: var(--color-primary);
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--border-radius-xs);
+  font-weight: 800;
+  font-size: var(--font-size-xxs);
+  text-transform: uppercase;
+}
+
+/* --- 3. STATS GRID --- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  background-color: var(--color-table-hover);
+  border-bottom: 1px solid var(--color-table-border);
+}
+
+.stat-item {
+  padding: 2rem;
+  border-right: 1px solid var(--color-table-border);
+}
+
+.stat-label {
+  display: block;
+  color: var(--color-table-text-muted);
+  font-size: var(--font-size-xxs);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.stat-value {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  color: var(--color-table-text-main);
+}
+
+/* --- 5. COMMAND BAR / FOOTER --- */
+.card-footer {
+  padding: 2rem;
+  background-color: var(--color-table-hover);
+  display: flex;
+  gap: 2rem;
+  border-top: 1px solid var(--color-table-border);
+}
+
+.card-footer .btn-full {
+  flex: 1; /* Makes buttons grow equally */
+  padding: 1.25rem !important;
+  font-size: var(--font-size-md) !important;
+}
+
+/* --- 6. UTILITIES --- */
+.memo-section { padding: 3rem 2rem; }
+.section-title { font-size: var(--font-size-sm); color: var(--color-primary); margin-bottom: 1.5rem; font-weight: 700; }
+.memo-text { line-height: 1.8; color: var(--color-text-base); font-size: var(--font-size-xs); }
+.text-lg { font-size: var(--font-size-lg); font-weight: 700; line-height: 1.1; margin: 0; }
+.text-md { font-size: var(--font-size-md); font-weight: 700; margin: 0; }
+.icon-lg { width: 2.4rem; height: 2.4rem; color: var(--color-primary); }
+

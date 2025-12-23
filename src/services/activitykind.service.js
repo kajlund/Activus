@@ -1,22 +1,15 @@
 import { z } from 'zod';
 
 import { getActivityKindsDAO } from '../db/activitykind.dao.js';
+import { generateErrrorObject } from '../utils/helpers.js';
 
 const ActivityKindSchema = z
   .object({
     name: z.string().trim().min(1, 'Name is required'),
+    iconName: z.string().trim().optional(),
     description: z.string().trim().optional(),
   })
   .strict();
-
-function generateErrrorObject(zodError) {
-  const flattened = z.flattenError(zodError)?.fieldErrors;
-  const error = {};
-  for (const key in flattened) {
-    error[key] = flattened[key]?.join(', ');
-  }
-  return error;
-}
 
 export function getActivityKindsService(cnf, log) {
   const dao = getActivityKindsDAO(log);

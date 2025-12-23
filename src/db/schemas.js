@@ -17,6 +17,7 @@ export const activityKinds = sqliteTable('ActivityKinds', {
     .primaryKey()
     .$defaultFn(() => createId()),
   name: text().notNull().unique(),
+  iconName: text().notNull().default(''),
   description: text().notNull().default(''),
   ...timestamps,
 });

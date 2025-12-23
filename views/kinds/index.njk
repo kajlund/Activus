@@ -1,0 +1,56 @@
+{% extends "layouts/layout.njk" %}
+{% import "macros/ui.njk" as ui %}
+
+{% block head %}
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/kinds.css" />
+{% endblock %}
+
+{% block main %}
+<div class="container main-content">
+  <header class="view-header">
+    <div class="header-title-area">
+      {{ ui.icon('ico-kinds', class='icon-xl') }}
+      <h1>{{ title }}</h1>
+    </div>
+
+    <div class="header-action-area">
+      <a href="/activitykinds/new" class="btn btn-outline">
+        <span>New Kind</span>
+        {{ ui.icon('ico-edit') }}
+      </a>
+    </div>
+  </header>
+
+  <div class="kind-grid">
+  {% for kind in activityKinds %}
+    <div class="ui-card kind-card">
+      <div class="kind-card-content">
+        {{ ui.icon(kind.iconName | default('ico-activity'), class='icon-xl') }}
+        <span class="kind-name">{{ kind.name }}</span>
+      </div>
+
+      <div class="kind-card-actions">
+        <a href="/activitykinds/{{ kind.id }}/edit" class="btn-icon-link" title="Edit">
+          {{ ui.icon('ico-edit') }}
+        </a>
+        <button class="btn-icon-link btn-danger-text"
+          data-confirm="/activitykinds/{{ kind.id }}/delete"
+          data-modal-title="Delete {{ kind.name }}?"
+          data-modal-body="This category and its custom icon will be removed."
+          data-modal-btn="Delete"
+          data-modal-class="btn-primary btn-danger-hover"
+        >
+          {{ ui.icon('ico-trash') }}
+        </button>
+      </div>
+    </div>
+  {% endfor %}
+    {# "Add New" Tile #}
+    <a href="/activitykinds/new" class="ui-card kind-card add-new-card">
+      {{ ui.icon('ico-plus', class='icon-lg') }}
+      <span>Add New Kind</span>
+    </a>
+  </div>
+</div>
+{% endblock %}

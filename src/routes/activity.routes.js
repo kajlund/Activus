@@ -1,11 +1,11 @@
-import { getActivityKindsController } from '../controllers/activitykind.controller.js';
+import { getActivityController } from '../controllers/activity.controller.js';
 
-export function getActivityKindRoutes(cnf, log) {
-  const ctrl = getActivityKindsController(cnf, log);
+export function getActivityRoutes(cnf, log) {
+  const ctrl = getActivityController(cnf, log);
 
   return {
     group: {
-      prefix: '/activitykinds',
+      prefix: '/activities',
       middleware: [],
     },
     routes: [
@@ -13,13 +13,19 @@ export function getActivityKindRoutes(cnf, log) {
         method: 'get',
         path: '/',
         middleware: [],
-        handler: ctrl.showActivityKindViews,
+        handler: ctrl.showActivitiesViews,
       },
       {
         method: 'get',
         path: '/new',
         middleware: [],
         handler: ctrl.showAddView,
+      },
+      {
+        method: 'get',
+        path: '/:id',
+        middleware: [],
+        handler: ctrl.showDetailsView,
       },
       {
         method: 'get',
@@ -31,19 +37,19 @@ export function getActivityKindRoutes(cnf, log) {
         method: 'post',
         path: '/create',
         middleware: [],
-        handler: ctrl.createActivityKind,
+        handler: ctrl.createActivity,
       },
       {
         method: 'post',
         path: '/:id/update',
         middleware: [],
-        handler: ctrl.updateActivityKind,
+        handler: ctrl.updateActivity,
       },
       {
         method: 'post',
         path: '/:id/delete',
         middleware: [],
-        handler: ctrl.deleteActivityKind,
+        handler: ctrl.deleteActivity,
       },
     ],
   };
