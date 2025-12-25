@@ -66,7 +66,7 @@
 
       {# Numeric Stats Grid #}
       <div class="form-grid">
-        {{ ui.field("Distance (km)", "distance", "distance", activity.distance, type="number", error=errors.distance) }}
+        {{ ui.numberField("Distance (km)", "distance", "distance", activity.distance.toFixed(2), "0.01", "0", "0.00", error=errors.distance) }}
 
         {# Multi-input Duration Macro #}
         {{ ui.durationField("Duration", hrs, mins, secs, error=errors.duration) }}

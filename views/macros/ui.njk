@@ -25,6 +25,27 @@
 </div>
 {% endmacro %}
 
+{% macro numberField(label, id, name, value="", step="0.01", min="0", placeholder="0.00", error="") %}
+<div class="form-group">
+  <label for="{{ id }}" class="form-label">{{ label }}</label>
+
+  <input
+    type="number"
+    id="{{ id }}"
+    name="{{ name }}"
+    value="{{ value }}"
+    step="{{ step }}"
+    min="{{ min }}"
+    class="form-input {% if error %}is-invalid{% endif %}"
+    placeholder="{{ placeholder }}">
+
+  {% if error %}
+    <span class="field-error-msg">{{ error }}</span>
+  {% endif %}
+</div>
+{% endmacro %}
+
+
 {% macro durationField(label, hrs=0, mins=0, secs=0, error="") %}
 <div class="form-group">
   <label class="form-label">{{ label }}</label>
