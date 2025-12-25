@@ -59,10 +59,18 @@
             {{ ui.icon('ico-clock') }}
             <span>{{ activity.duration | formatSeconds }}</span>
           </div>
+          {% if activity.distance %}
           <div class="stat">
             {{ ui.icon('ico-distance') }}
             <span>{{ activity.distance }}km</span>
           </div>
+          {% endif %}
+          {% if activity.elevation %}
+          <div class="stat">
+            {{ ui.icon('ico-elevation') }}
+            <span>{{ activity.elevation }}m</span>
+          </div>
+          {% endif %}
         </div>
       </div>
 
