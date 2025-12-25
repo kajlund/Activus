@@ -50,31 +50,6 @@
   width: 100%;
 }
 
-.btn-icon-link {
-  background: none;
-  border: none;
-  padding: 0.5rem;
-  color: var(--color-table-text-muted);
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.btn-icon-link:hover {
-  color: var(--color-secondary);
-}
-
-.btn-danger-text:hover {
-  color: var(--color-error);
-}
-
-.add-kind-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  text-decoration: none;
-  color: var(--color-secondary-dk);
-  gap: 1rem;
+.add-kind-card {
+  min-height: 20rem;       /* Match the min-height of kind cards */
 }

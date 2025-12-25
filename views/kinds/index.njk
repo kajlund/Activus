@@ -46,10 +46,16 @@
       </div>
     </div>
   {% endfor %}
-    {# "Add New" Tile #}
-    <a href="/activitykinds/new" class="ui-card kind-card add-new-card">
-      {{ ui.icon('ico-plus', class='icon-lg') }}
-      <span>Add New Kind</span>
+    {# "Add New" Card #}
+    <a href="/activitykinds/new" class="ui-card add-new-card kind-card add-kind-card">
+      <div class="add-card-content">
+        <div class="add-icon-circle">
+          {{ ui.icon('ico-plus', class='icon-xl') }}
+        </div>
+        <div class="text-center">
+          <p class="text-md">Add New Category</p>
+        </div>
+      </div>
     </a>
   </div>
 </div>
