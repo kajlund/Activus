@@ -99,7 +99,7 @@
   margin-top: 1.5rem;
 }
 
-/* FILTER */
+/* FILTERS */
 .filter-wrapper {
   display: flex;
   justify-content: space-between;
@@ -146,6 +146,7 @@
 
 
 /* BUTTONS --- */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -169,7 +170,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Button Variants */
 .btn-primary {
   background-color: var(--color-accent);
   color: var(--color-primary);
@@ -209,7 +209,6 @@
   font-weight: 500;
 }
 
-/* Utility for text-only buttons (like Delete) */
 .btn-text-only {
   background: none;
   border: none;
@@ -227,7 +226,7 @@
   transform: none;
 }
 
-/* --- 2. ICONS --- */
+/* --- ICONS --- */
 .icon {
   width: 2.4rem;
   height: 2.4rem;
@@ -246,12 +245,28 @@
 
 .icon-mirrored { transform: scaleX(-1); }
 
-/* Animation Logic */
+.btn-icon-link {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  color: var(--color-table-text-muted);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-icon-link:hover {
+  color: var(--color-secondary);
+}
+
+.btn-danger-text:hover {
+  color: var(--color-error);
+}
+
 .btn:hover .icon-edit { transform: rotate(-15deg) scale(1.1); }
 .btn-link:hover .icon-mirrored { transform: scaleX(-1) translateX(4px); }
 .view-link:hover .icon:not(.icon-mirrored) { transform: translateX(4px); }
 
-/* --- 3. VIEW HEADERS --- */
+/* --- VIEW HEADERS --- */
 .view-header {
   display: flex;
   justify-content: space-between;
@@ -264,7 +279,8 @@
 .header-title-area { display: flex; align-items: center; gap: 1rem; }
 .header-title-area h1 { color: var(--color-primary); margin: 0; }
 
-/* --- 4. DATA TABLES --- */
+
+/* --- DATA TABLES --- */
 .data-table {
   align-self: flex-start;
   display: table;
