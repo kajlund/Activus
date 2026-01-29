@@ -1,6 +1,7 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 
+import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/libsql';
 
 import { activities, activityKinds } from '../src/db/schemas.js';

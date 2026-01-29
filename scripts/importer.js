@@ -1,7 +1,7 @@
-// seed.js
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 
+import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/libsql';
 
 import { getConfig } from '../src/utils/config.js';

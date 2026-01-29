@@ -4,15 +4,15 @@
   "description": "My activities app",
   "main": "index.js",
   "scripts": {
-    "db:export": "node --env-file=.env.development ./scripts/exporter.js",
-    "db:import": "node --env-file=.env.development ./scripts/importer.js",
+    "db:export": "node ./scripts/exporter.js",
+    "db:import": "node ./scripts/importer.js",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "dev": "node --watch --env-file=.env.development ./src/index.js",
+    "dev": "nodemon ./src/index.js",
     "start": "node ./src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "LuKa",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
@@ -24,6 +24,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "globals": "^16.5.0",
+    "nodemon": "^3.1.11",
     "prettier": "^3.7.4"
   },
   "dependencies": {
