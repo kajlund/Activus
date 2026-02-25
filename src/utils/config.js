@@ -7,8 +7,8 @@ const configSchema = z.strictObject({
     .enum(['trace', 'debug', 'info', 'warn', 'error', 'fatal', 'silent'])
     .optional(),
   logHttp: z.boolean().optional(),
-  dbConnection: z.string().trim(),
-  cookieSecret: z.string().min(30),
+  dbUrl: z.string().trim(),
+  accessTokenSecret: z.string().min(30),
 });
 
 function getDefaultConfig() {
@@ -17,8 +17,8 @@ function getDefaultConfig() {
     port: parseInt(process.env.PORT) || 3000,
     logLevel: process.env.LOG_LEVEL || 'info',
     logHttp: process.env.LOG_HTTP === '1',
-    dbConnection: process.env.DB_CONNECTION,
-    cookieSecret: process.env.COOKIE_SECRET,
+    dbUrl: process.env.DATABASE_URL,
+    accessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
   };
 }
 

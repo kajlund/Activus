@@ -23,7 +23,7 @@ export function getApp(cnf, log) {
 
   app.use(
     session({
-      secret: cnf.cookieSecret,
+      secret: cnf.accessTokenSecret,
       resave: true,
       saveUninitialized: false,
       cookie: {

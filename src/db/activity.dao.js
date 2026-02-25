@@ -10,7 +10,7 @@ export function getActivitiesDAO(log) {
         .delete(activities)
         .where(eq(activities.id, id))
         .returning();
-      log.debug(deleted, `Deleted activity by id ${id}`);
+      log.debug(deleted, `Deleted activity id ${id}`);
       return deleted;
     },
     findById: async function (id) {
@@ -33,10 +33,13 @@ export function getActivitiesDAO(log) {
         .innerJoin(activityKinds, eq(activities.kindId, activityKinds.id))
         .where(eq(activities.id, id))
         .limit(1);
-      log.debug(found, `Found activity by id ${id}`);
+      log.debug(found, `Found activity id ${id}`);
       return found;
     },
     insert: async function (data) {
+      const time = new Date().toISOString();
+      data.createdAt = time;
+      data.updatedAt = time;
       const [newActivity] = await db
         .insert(activities)
         .values(data)
@@ -63,17 +66,18 @@ export function getActivitiesDAO(log) {
         })
         .from(activities)
         .innerJoin(activityKinds, eq(activities.kindId, activityKinds.id))
-        .orderBy(desc(activities.when));
+        .orderBy(desc(activities.when), desc(activities.createdAt));
       log.debug(result, 'Found activities');
       return result;
     },
     updateById: async function (id, data) {
+      data.updatedAt = new Date().toISOString();
       const [updated] = await db
         .update(activities)
         .set(data)
         .where(eq(activities.id, id))
         .returning();
-      log.debug(updated, `Updated activity by id ${id}`);
+      log.debug(updated, `Updated activity id ${id}`);
       return updated;
     },
   };
