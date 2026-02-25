@@ -2,15 +2,14 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 
 import 'dotenv/config';
-import { drizzle } from 'drizzle-orm/libsql';
 
-import { getConfig } from '../src/utils/config.js';
 import { activities, activityKinds } from '../src/db/schemas.js';
+import db from '../src/db/index.js';
 
 // Define the directory where your JSON files are stored
 const DATA_DIR = path.join(process.cwd(), 'data');
 
-// The JSON data structure MUST match your table schema fields (users.json and products.json)
+// The JSON data structure MUST match your table schema fields (activities.json and kinds.json)
 
 /**
  * Reads and parses a JSON file.
@@ -34,16 +33,14 @@ async function loadJsonData(filename) {
  */
 async function seedDatabase() {
   console.log('🚀 Starting database seeding...');
-  const cnf = getConfig();
-  const db = drizzle(cnf.dbConnection);
   try {
     // --- 2.1 Load Data from JSON ---
     const kindData = await loadJsonData('kinds.json');
     const activityData = await loadJsonData('activities.json');
 
     // --- 2.2 Clear existing data (Optional, but recommended for clean seeding) ---
-    await db.delete(activityKinds);
     await db.delete(activities);
+    await db.delete(activityKinds);
     console.log('✅ Existing tables cleared successfully.');
 
     // --- 2.3 Insert Data into Drizzle Tables ---
