@@ -2,9 +2,10 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 
 import 'dotenv/config';
-import { drizzle } from 'drizzle-orm/libsql';
 
 import { activities, activityKinds } from '../src/db/schemas.js';
+import db from '../src/db/index.js';
+
 import { getConfig } from '../src/utils/config.js';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
@@ -27,10 +28,6 @@ async function exportDatabase() {
 
   try {
     await ensureDataDirectory();
-    const cnf = getConfig();
-    const db = drizzle(cnf.dbConnection);
-
-    // --- Fetch Data from Drizzle Tables ---
 
     // A. Fetch Kinds
     console.log('Fetching ActivityKind data...');
