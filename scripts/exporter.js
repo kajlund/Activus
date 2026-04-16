@@ -6,8 +6,6 @@ import 'dotenv/config';
 import { activities, activityKinds } from '../src/db/schemas.js';
 import db from '../src/db/index.js';
 
-import { getConfig } from '../src/utils/config.js';
-
 const DATA_DIR = path.join(process.cwd(), 'data');
 
 async function ensureDataDirectory() {
