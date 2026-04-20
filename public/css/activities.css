@@ -88,6 +88,37 @@
   border-top: 1px solid var(--color-table-border);
 }
 
+.card-footer-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copy-link {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-table-text-muted);
+  text-decoration: none;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  padding: 0.5rem;
+  border-radius: var(--border-radius-xs);
+}
+
+.copy-link:hover {
+  color: var(--color-primary);
+  background-color: rgba(89, 13, 130, 0.1);
+}
+
+.copy-link .icon {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
 .activity-card:hover {
   border-color: var(--color-accent); /* Neon Yellow border on hover */
   box-shadow: 0 15px 30px rgba(89, 13, 130, 0.15); /* Subtle violet shadow */

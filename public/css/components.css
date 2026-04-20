@@ -1,5 +1,6 @@
 /* Base UI Card*/
 .ui-card {
+  position: relative; /* Added for stretched-link */
   background-color: var(--color-background);
   border: 1px solid var(--color-subtle);
   border-radius: var(--border-radius-lg);
@@ -8,6 +9,16 @@
   text-decoration: none;
   color: inherit;
   overflow: hidden;
+}
+
+.stretched-link::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: "";
 }
 
 .ui-card:hover {

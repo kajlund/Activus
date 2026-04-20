@@ -20,11 +20,36 @@ export function getActivityController(cnf, log) {
     }),
     showAddView: asyncHandler(async (req, res) => {
       const activityKinds = await svcKinds.queryActivityKinds();
+      let payload = {};
+      let hrs, mins, secs;
+
+      if (req.query.copy) {
+        const activity = await svc.getActivityById(req.query.copy);
+        if (activity) {
+          payload = {
+            title: `Copy of ${activity.title}`,
+            kindId: activity.kindId,
+            distance: activity.distance,
+            elevation: activity.elevation,
+            calories: activity.calories,
+            description: activity.description,
+            when: new Date(), // Default to today for a copy
+          };
+          const duration = secToHms(activity.duration);
+          hrs = duration.hrs;
+          mins = duration.mins;
+          secs = duration.secs;
+        }
+      }
+
       res.render('activities/add', {
-        title: 'Add Activity',
+        title: req.query.copy ? 'Copy Activity' : 'Add Activity',
         page: 'activities',
         activityKinds,
-        payload: {},
+        payload,
+        hrs,
+        mins,
+        secs,
         errors: {},
       });
     }),

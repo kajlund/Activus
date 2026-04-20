@@ -39,45 +39,52 @@
 
   <div class="activity-grid">
   {% for activity in activities %}
-    <a href="/activities/{{ activity.id }}" class="ui-card activity-card">
-
-      <div class="activity-card-header">
-        <div class="header-left">
-          <div class="activity-card-icon">
-            {{ ui.icon(activity.kindIcon | default('ico-activity'), class='icon-lg') }}
-          </div>
-          <span class="kind-tag filter-target">{{ activity.kindName }}</span>
+  <div class="ui-card activity-card">
+    <div class="activity-card-header">
+      <div class="header-left">
+        <div class="activity-card-icon">
+          {{ ui.icon(activity.kindIcon | default('ico-activity'), class='icon-lg') }}
         </div>
-        <span class="text-date">{{ activity.when | shortDate }}</span>
+        <span class="kind-tag filter-target">{{ activity.kindName }}</span>
       </div>
+      <span class="text-date">{{ activity.when | shortDate }}</span>
+    </div>
 
-      <div class="activity-card-body">
-        <h3 class="text-md">{{ activity.title }}</h3>
+    <div class="activity-card-body">
+      <h3 class="text-md">{{ activity.title }}</h3>
 
-        <div class="activity-stats-row">
-          <div class="stat">
-            {{ ui.icon('ico-clock') }}
-            <span>{{ activity.duration | formatSeconds }}</span>
-          </div>
-          {% if activity.distance %}
-          <div class="stat">
-            {{ ui.icon('ico-distance') }}
-            <span>{{ activity.distance }}km</span>
-          </div>
-          {% endif %}
-          {% if activity.elevation %}
-          <div class="stat">
-            {{ ui.icon('ico-elevation') }}
-            <span>{{ activity.elevation }}m</span>
-          </div>
-          {% endif %}
+      <div class="activity-stats-row">
+        <div class="stat">
+          {{ ui.icon('ico-clock') }}
+          <span>{{ activity.duration | formatSeconds }}</span>
         </div>
+        {% if activity.distance %}
+        <div class="stat">
+          {{ ui.icon('ico-distance') }}
+          <span>{{ activity.distance }}km</span>
+        </div>
+        {% endif %}
+        {% if activity.elevation %}
+        <div class="stat">
+          {{ ui.icon('ico-elevation') }}
+          <span>{{ activity.elevation }}m</span>
+        </div>
+        {% endif %}
       </div>
+    </div>
 
-      <div class="activity-card-footer">
-        <span class="view-link">View Details {{ ui.icon('ico-chevron-right') }}</span>
+    <div class="activity-card-footer">
+      <div class="card-footer-links">
+        <a href="/activities/{{ activity.id }}" class="view-link stretched-link">
+          View Details {{ ui.icon('ico-chevron-right') }}
+        </a>
+        <a href="/activities/new?copy={{ activity.id }}" class="copy-link">
+          {{ ui.icon('ico-copy') }}
+          <span>Copy</span>
+        </a>
       </div>
-    </a>
+    </div>
+  </div>
   {% endfor %}
   {# The "Add New" Card #}
   <a href="/activities/new" class="ui-card add-new-card activity-card add-activity-card">
