@@ -25,8 +25,8 @@ export function getActivityKindsService(cnf, log) {
         };
       }
       // Check for duplicate name
-      const names = await dao.findByName(payload.name);
-      if (names.length > 0) {
+      const existingKind = await dao.findByName(payload.name);
+      if (existingKind) {
         return {
           data: undefined,
           error: { name: 'An activity kind with this name already exists' },
@@ -57,8 +57,8 @@ export function getActivityKindsService(cnf, log) {
         };
       }
       // Check for duplicate name
-      const names = await dao.findByName(payload.name);
-      if (names.length > 0 && names[0].id !== id) {
+      const existingKind = await dao.findByName(payload.name);
+      if (existingKind && existingKind.id !== id) {
         return {
           data: undefined,
           error: { name: 'An activity kind with this name already exists' },
